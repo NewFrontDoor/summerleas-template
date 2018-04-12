@@ -15,7 +15,7 @@ class Navigation extends Component {
             <div id="menu-region" className="col-xs-12 col-md-9">
                 <div className="region region-header">
 
-      <div id="block-menu-menu-mobile-menu" className="block block-menu hidden-md hidden-lg">
+      <div className="block block-menu hidden-md hidden-lg">
 
 
       <div className="content">
@@ -38,7 +38,7 @@ class Navigation extends Component {
       </div>
       </div>
 
-      <div id="block-tb-megamenu-main-menu" className="block block-tb-megamenu">
+      <div className="block block-tb-megamenu">
 
 
       <div className="content">
@@ -53,7 +53,7 @@ class Navigation extends Component {
 
         Visit Us          <span className="caret"></span>
               </a>
-      <div data-width="750" style={{width: "750px"}} className="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
+      <div style={{width: "750px"}} className="tb-megamenu-submenu dropdown-menu mega-dropdown-menu nav-child">
       <div className="mega-dropdown-inner">
         <div  className="tb-megamenu-row row-fluid">
       <div className="tb-megamenu-column span3  mega-col-nav">
@@ -205,7 +205,7 @@ class Navigation extends Component {
       </div>
       </div>
 
-      <div id="tb-megamenu-column-8" className="tb-megamenu-column span3  mega-col-nav">
+      <div className="tb-megamenu-column span3  mega-col-nav">
       <div className="tb-megamenu-column-inner mega-inner clearfix">
             <ul  className="tb-megamenu-subnav mega-nav level-1 items-4">
       <li className="tb-megamenu-item level-2 mega">
