@@ -74,7 +74,7 @@ class Footer extends Component {
 
       <div className="content">
         <div className="copyright">
-      <p>Nestor was developed by <a href="http://leaftree.pt">leaftree</a></p>
+      <p>Website built and maintained by <a href="http://newfrontdoor.org">New Front Door</a></p>
       </div> {/* /copyright */}  </div>
       </div>  </div>
                 </div> {/* /footer-left-region */}
