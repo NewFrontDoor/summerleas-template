@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import HomePageWrapper from './components/HomePageWrapper';
 import Navigation from './components/Navigation';
+import HomePageWrapper from './components/homepage/HomePageWrapper';
+import OtherPageWrapper from './components/OtherPageWrapper';
+import Footer from './components/Footer';
 
 import './assets/css/mediaelement/mediaelementplayer.min.css';
 
@@ -31,8 +33,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" component={Navigation} />
+          <Route path="*" component={Navigation} />
           <Route exact path="/" component={HomePageWrapper} />
+          <Route path="/:path" component={OtherPageWrapper} />
+          <Route path="*" component={Footer} />
         </div>
       </Router>
     );
