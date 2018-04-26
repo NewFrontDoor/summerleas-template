@@ -87,9 +87,9 @@ class Footer extends Component {
 
       <div className="content">
         <div className="social-networks-footer">
-      <a href="http://facebook.com/summerleaschristianchurch"><i className="icon ion-social-facebook"></i></a>
-      <a href="http://instagram.com/summerleaschurch"><i className="icon ion-social-instagram"></i></a>
-      <a href="mailto:info@summerleaschurch.org"><i className="icon ion-email"></i></a>
+        <a href="https://www.facebook.com/NewFrontDoorIT/"><i className="icon ion-social-facebook"></i></a>
+        <a href="https://twitter.com/NewFrontDoorIT"><i className="icon ion-social-twitter"></i></a>
+        <a href="mailto:contactus@newfrontdoor.org"><i className="icon ion-email"></i></a>
       </div> {/* /social-networks-footer */}  </div>
       </div>  </div>
                 </div> {/* /footer-right-region */}
