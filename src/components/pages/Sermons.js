@@ -120,7 +120,12 @@ class Sermons extends Component {
 
 
                         <div className="content">
-                          <div className="field field-name-body field-type-text-with-summary field-label-hidden"><div className="field-items"><div className="field-item even"><p>Here you'll find all the latest talks and current sermon series we're doing at Cornerstone. Feel free to browse around and check out the different talks. We've also highlighted a couple of talks that we think could be really valuable if you're new to Christianity, or if you're new to Cornerstone and want to find out what we're all about.</p><p>(If you're after something specific, and can't find it here, then please click <a href="/allsermons">here</a> where you&apos;ll be able to search through all of our recorded sermons)</p></div></div></div>  </div>
+                          <div className="field field-name-body field-type-text-with-summary field-label-hidden"><div className="field-items"><div className="field-item even">
+                            <p>Here you'll find all the latest talks and current sermon series we're doing at -Our Church-. Feel free to browse around and check out the different talks.
+                            We've also highlighted a couple of talks that we think could be really valuable if you're new to Christianity, or if you're new to -Our Church- and want to find out what we're all about.
+                            </p>
+                            <p>(If you're after something specific, and can't find it here, then please click <a href="/allsermons">here</a> where you&apos;ll be able to search through all of our recorded sermons)
+                            </p></div></div></div>  </div>
 
 
 

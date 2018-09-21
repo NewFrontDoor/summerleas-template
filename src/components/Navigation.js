@@ -52,7 +52,7 @@ class Navigation extends Component {
                       <div className="nav-collapse  always-show">
                         <ul className="tb-megamenu-nav nav level-0 items-5">
                           <li className="tb-megamenu-item level-1 mega dropdown">
-                            <a href="#" className="dropdown-toggle" title="Visit Us">
+                            <a href="javascript:void(0);" className="dropdown-toggle" title="Visit Us">
 
                               Dropdown Menu         <span className="caret"></span>
                             </a>
