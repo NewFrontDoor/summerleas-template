@@ -2,37 +2,34 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Navigation from './Navigation';
 import OtherPageContent from './OtherPageContent';
+
+import AllSermons from './pages/AllSermons';
+import Sermons from './pages/Sermons';
+import SermonPage from './pages/SermonPage';
+
+
+import OurPeople from './pages/OurPeople';
+
+
+import ContactUs from './pages/ContactUs';
+
 
 class OtherPageWrapper extends Component {
   render() {
     return (
       <section>
-        <div id="top-content-region" className="top-content padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1">
-          <div className="container">
-            <div className="row">
-              <div id="top-content-left-region" className="top-content-left col-xs-12 col-md-6 text-center-sm">
-                <div id="page-title-block" className="page-title block">
-                  <h1>Page Title Here</h1>
-                </div>
-              </div>
+        <Switch>
+          <Route exact path="/AllSermons" component={AllSermons} />
+          <Route exact path="/Sermons" component={Sermons} />
+          <Route exact path="/node/:nid" component={SermonPage} />
+          <Route exact path="/node/:nid/:title" component={SermonPage} />
 
-              <div id="top-content-right-region" className="top-content-right col-xs-12 col-md-6 text-right text-center-sm">
-                <div id="page-breadcrumbs-block" className="page-breadcrumbs block">
-                  <div className="breadcrumbs">
-                    <a href="/">Home</a>
-                    <span className="delimiter">›</span>
-                    <span title="" className="nolink">Page Category</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <Route exact path="/OurPeople" component={OurPeople} />
+          <Route exact path="/ContactUs" component={ContactUs} />
 
-        <OtherPageContent />
-
+          <Route path="/*" component={OtherPageContent} />
+        </Switch>
       </section>
     );
   }

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react';
+import GoogleMap from '../models/GoogleMap';
 
 
 class WhereToFindUs extends Component {
@@ -11,13 +12,13 @@ class WhereToFindUs extends Component {
             <div className="block block-block">
               <h2 >Where to Find Us</h2>
               <div className="content">
-                <div id="map_canvas" className="google-map" style={{maxHeight:"270px"}}></div>
-                <div><a href="https://goo.gl/maps/yF5VjdUgXPq">Tarremah School</a></div>
-                <div>27 Nautilus Grove</div>
-                <div>Huntingfield, Tasmania</div>  </div>
-              </div>
+                <GoogleMap id="map_canvas" height="270px" />
+                <div><a href="https://goo.gl/maps/yF5VjdUgXPq">Church Name or Place</a></div>
+                <div>Address -- Change lat and long in index.html</div>
+                <div>City, State</div>  </div>
             </div>
           </div>
+        </div>
       </section>
     );
   }
