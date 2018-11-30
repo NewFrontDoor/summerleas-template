@@ -7,6 +7,7 @@ import OtherPageContent from './OtherPageContent';
 import AllSermons from './pages/AllSermons';
 import Sermons from './pages/Sermons';
 import SermonPage from './pages/SermonPage';
+import SermonSeriesPage from './pages/SermonSeriesPage';
 
 
 import OurPeople from './pages/OurPeople';
