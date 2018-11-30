@@ -1,5 +1,7 @@
-/* eslint-disable */
+/*eslint-disable*/
 import React, { Component } from 'react';
+
+import Waypoint from 'react-waypoint';
 
 import _ from 'lodash'
 import { decode } from 'he'
@@ -27,8 +29,12 @@ class Sermons extends Component {
       sermonPages: null,
       totalSermons: null,
       searchQuery: "",
-      searchType: "title"
+      searchType: "title",
+      loadingSermons: true,
+      sermonsRemaining: true
     }
+
+    this.handleWaypointEnter = this.handleWaypointEnter.bind(this);
   }
 
   componentWillMount() {
@@ -39,7 +45,7 @@ class Sermons extends Component {
     });
 
     getFromDrupalAPI('all_sermons_api?limit=' + PER_PAGE, function (data) {
-      that.setState({ sermons: data });
+      that.setState({ sermons: data, loadingSermons: false });
     });
 
     //get count of total sermons for pages
@@ -59,6 +65,19 @@ class Sermons extends Component {
 
   }
 
+  loadMoreSermons(page) {
+    var that = this;
+    var offset = (page + 1) * PER_PAGE
+    if (this.state.sermonPages === page + 1) {
+      this.setState({ sermonsRemaining: false });
+    }
+    this.setState({ page: page + 1 })
+    getFromDrupalAPI('all_sermons_api?offset=' + offset + '&limit=' + PER_PAGE, function (data) {
+      that.setState({ sermons: [...that.state.sermons, ...data], viewingRefinedList: false, loadingSermons: false })
+    });
+
+  }
+
   loadPreviousSermons(page) {
     var that = this;
     var offset = (page - 1) * PER_PAGE
@@ -73,6 +92,18 @@ class Sermons extends Component {
       that.setState({ sermons: data, viewingRefinedList: false })
     });
 
+
+  }
+
+  handleWaypointEnter() {
+    if (!this.state.loadingSermons && this.state.page < this.state.sermonPages) {
+      this.setState({ loadingSermons: true })
+      this.loadMoreSermons(this.state.page)
+    }
+
+    if (this.state.page === this.state.sermonPages) {
+      this.setState({ sermonsRemaining: false })
+    }
 
   }
 
@@ -106,6 +137,7 @@ class Sermons extends Component {
   }
 
 
+
   render() {
     if (!this.state.sermons) {
       var sermons = <tr><td>Loading, please wait.</td></tr>;
@@ -115,30 +147,30 @@ class Sermons extends Component {
       var sermons = _.map(this.state.sermons, (sermon) => {
         return (
           <tr key={_.uniqueId()} className="odd even">
-            {sermon.node_title ? <td style={tdPadding} dangerouslySetInnerHTML={{ __html: sermon.node_url }} /> : <td style={tdPadding}></td>}
-            <td style={tdPadding}>{sermon.sermonseries ? decode(sermon.sermonseries) : ''}</td>
+            {sermon.node_title ? <td style={tdPadding}><a href={`/sermon/${sermon.nid}`}>{sermon.node_title}</a></td> : <td style={tdPadding}><a href={`/sermon/${sermon.nid}`}>Untitled</a></td>}
+            {sermon.sermonseries ? <td style={tdPadding}><a href={'/series/' + sermon.series_id}>{decode(sermon.sermonseries)}</a></td> : <td style={tdPadding}></td>}
             <td style={tdPadding}>{sermon.text ? decode(sermon.text) : ''}</td>
             <td style={tdPadding}>{decode(sermon.preacher)}</td>
             <td style={tdPadding}>{sermon.datepreached}</td>
-            <td style={tdPadding}><a href={sermon.url} target="_blank"> [Download]</a></td>
+            <td style={tdPadding}><a href={sermon.url} target="_blank" rel="noopener noreferrer"><i className="fa fa-download"></i></a></td>
           </tr>
         )
       });
     }
 
     let prevSermonsLink = null;
-    if (this.state.page !== 0 && this.state.viewingRefinedList === false) {
-      prevSermonsLink = <a href="javascript:void(0);" onClick={() => this.loadPreviousSermons(this.state.page)}>Previous Page</a>
-    }
-
     if (this.state.viewingRefinedList === true) {
       prevSermonsLink = <a href="javascript:void(0);" onClick={() => this.loadPreviousSermons(1)}>Return to All Sermons</a>
     }
 
-    let nextSermonsLink = null;
-    if (this.state.page !== this.state.sermonPages - 1 && this.state.viewingRefinedList === false) {
-      nextSermonsLink = <a href="javascript:void(0);" onClick={() => this.loadNextSermons(this.state.page)}>Next Page</a>
+    let loadingIcon = null;
+    if (!this.state.sermonPages) {
+      loadingIcon = <i className="fa fa-spinner"></i>;
     }
+    if (this.state.loadingSermons && this.state.sermonsRemaining) {
+      loadingIcon = <i className="fa fa-spinner"></i>;
+    }
+
 
     var sermonSeriesOptions;
     if (this.state.sermonSeries) {
@@ -148,12 +180,6 @@ class Sermons extends Component {
         )
       });
     }
-
-    var showPageNumber;
-    if (this.state.viewingRefinedList === false && this.state.sermonPages) {
-      showPageNumber = <div className="text-center">Page {this.state.page + 1} of {this.state.sermonPages}</div>
-    }
-
 
     return (
       <section>
@@ -190,8 +216,6 @@ class Sermons extends Component {
 
                   <div className="content">
                     <div className="view view-All-Sermons view-id-All_Sermons view-display-id-page view-dom-id-8cf9a4aecfefa92964ac5f3e5a33e04e jquery-once-1-processed">
-                      <div className="view-header">
-                        Please enter as many search terms as you like in the box.  This will search across all of the fields shown in the table.  For  example, to find all sermons preached by John Smith, enter "John Smith" in the box.    </div>
                       <div className="col-md-3">View Sermon Series:<select className="form-control" id="sermonSelect" onChange={event => this.loadSermonSeries(event.target.value)}>
                         <option value="">---</option>
                         {sermonSeriesOptions}
@@ -235,8 +259,14 @@ class Sermons extends Component {
                         </table>
                         <br />
                         <span style={{ float: "left" }}>{prevSermonsLink}</span>
-                        <span style={{ float: "right" }}>{nextSermonsLink}</span>
-                        {showPageNumber}
+                        <span>{loadingIcon}</span>
+                        {/*{showPageNumber}*/}
+
+                        {/*Only display the waypoint after number of pages has been set in state*/}
+                        {this.state.sermonPages && !this.state.viewingRefinedList ? <Waypoint onEnter={this.handleWaypointEnter}></Waypoint> : ''}
+
+                        {this.state.sermonsRemaining && !this.state.loadingSermons && !this.state.viewingRefinedList ? <div className="text-center"><button className="btn btn-primary sermon-load-more" onClick={this.handleWaypointEnter}>Load More...</button></div> : ''}
+                        {this.state.sermonsRemaining || this.state.viewingRefinedList ? '' : <div className="text-center">No more sermons to load</div>}
                       </div>
 
 

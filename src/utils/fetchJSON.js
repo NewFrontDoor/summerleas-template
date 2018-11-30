@@ -1,7 +1,9 @@
 import 'es6-promise/auto';
 import fetch from 'isomorphic-fetch';
 
-const DRUPAL_URL = "https://api-location.newfrontdoor.org/api/views/";
+//CRCK api used as a placeholder for sermons
+//Change this URL when the API is set up for the new website
+const DRUPAL_URL = "https://cornerstoneapi.newfrontdoor.org/api/views/";
 const DRUPAL_SEARCH_SERMONS = DRUPAL_URL + "all_sermons_api?display_id=services_1&filters";
 
 //Example suffix: all_sermons_api?filters[preacher]=keith&filters[title]=reality

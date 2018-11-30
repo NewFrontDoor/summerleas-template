@@ -22,8 +22,10 @@ class OtherPageWrapper extends Component {
         <Switch>
           <Route exact path="/AllSermons" component={AllSermons} />
           <Route exact path="/Sermons" component={Sermons} />
-          <Route exact path="/node/:nid" component={SermonPage} />
-          <Route exact path="/node/:nid/:title" component={SermonPage} />
+          <Route exact path="/sermon/:nid" component={SermonPage} />
+          <Route exact path="/sermon/:nid/:title" component={SermonPage} />
+          <Route exact path="/series/:nid" component={SermonSeriesPage} />
+          <Route exact path="/series/:nid/:title" component={SermonSeriesPage} />
 
           <Route exact path="/OurPeople" component={OurPeople} />
           <Route exact path="/ContactUs" component={ContactUs} />

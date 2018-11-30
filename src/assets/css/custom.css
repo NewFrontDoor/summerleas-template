@@ -1,0 +1,95 @@
+/*Fill latest sermon column with image*/
+.latestSermon-img{
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+/*Fix for overflowing text on gmaps*/
+.gm-style-iw {
+    width: auto !important;
+    max-width: 180px;
+    text-align: center;
+   }
+
+   
+/*Font color for gmap in footer*/
+   #content-map-footer>h4{
+    color: #2b2b2b;
+   }
+   #content-map-footer>p{
+    color: #777;
+   }
+
+   /*Hide map type toggle and street view selection from footer map*/
+   #map_canvas_footer>div>div> .gm-style-mtc , #map_canvas_footer>div>div>div>.gm-svpc{
+       display: none;
+   }   
+
+   .text-center {
+    text-align: center;
+  }
+  
+  .image-center {
+    display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  /*Styling for the person model*/
+  .person-name{
+    font-size: 24px;
+  margin-bottom: 8px;
+  margin-top: 10px;
+  font-weight: 300;
+  line-height: 24px;
+  }
+  
+  .person-title{
+    font-size: 16px;
+    color: #a2a5a4;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+
+
+/*@media (max-width: 767px) {
+  
+    .nestor-main-menu .navbar-toggle {
+      border: 1px solid #2588c9 !important;
+      background: #91c2e3 !important;
+      color: #000 !important;
+    }
+}*/
+
+  /*Styling for sermon load more and search*/
+  /*
+.sermon-load-more, .sermon-search-button {
+    padding: 2px 35px !important;
+    border-color: #65AAD5;
+    color: #65AAD5;
+  }
+  */
+
+  /*Change btn border color to fit theme*/
+  /*
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    border-color: #2588c9 !important;
+    background-color: #2588c9 !important;
+  }
+  
+  .btn-primary{
+    border-color: #2588c9;
+  }*/
+
+
+
+
+/* Site Text color if desired to be black*/
+/*
+body{
+  color: #000;
+}*/
+
+
+

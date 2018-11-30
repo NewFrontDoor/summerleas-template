@@ -24,7 +24,7 @@ class OurPeople extends Component {
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
-                    <span title="" className="nolink">Visit Us</span>
+                    <span title="" className="nolink">Our People</span>
                   </div>
                 </div>
               </div>

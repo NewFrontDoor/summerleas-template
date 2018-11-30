@@ -4,10 +4,9 @@ import _ from 'lodash';
 import AudioPlayer from 'react-responsive-audio-player';
 import { decode } from 'he'
 
-import { getFromDrupalAPI, searchDrupalSermons } from '../../utils/fetchJSON';
+import { getFromDrupalAPI } from '../../utils/fetchJSON';
 
 import '../../assets/css/audioplayer.css'
-import sermonSeriesImage from '../../assets/img/sermonSeriesImage.jpg';
 
 class LatestSermon extends Component {
   constructor() {
@@ -26,10 +25,9 @@ class LatestSermon extends Component {
   render() {
 
     if (!this.state.latestSermon) {
-      var sermonDetails = <div>Currently unavailable.</div>
+      var sermonDetails = <div>Loading, please wait.</div>
     }
     else {
-      var sermonDetails = <div>Sermon deets locked</div>
       var sermonDetails = _.map(this.state.latestSermon, (sermon) => {
         return (
           <div key={_.uniqueId()} className="content">
@@ -39,11 +37,11 @@ class LatestSermon extends Component {
 
                   <div className="views-field views-field-field-front-page-thumbnail">
                     <div className="field-content">
-                      <img className="latestSermon-img" src={sermonSeriesImage} width="600" height="450" />
+                      <img className="latestSermon-img" src={sermon.sermon_img ? sermon.sermon_img : sermon.series_img} width="600" height="450" />
                     </div>
                   </div>
 
-                  <span>        <div><a href={sermon.node_path}>{sermon.node_title}</a></div>  </span>
+                  <span>        <div><a href={`/sermon/${sermon.nid}`}>{sermon.node_title ? decode(sermon.node_title) : 'Untitled'}</a></div>  </span>
                   <span>        <div>{sermon.preacher}</div>  </span>
                   <span className="views-field views-field-field-sermon">
                     <span className="field-content">

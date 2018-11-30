@@ -13,8 +13,13 @@ class Slider extends Component {
         "src": slider1,
         "alt": "Welcome to <Our Church>",
         "caption": null
-      },
-      {
+      }]
+    };
+  }
+
+  /*
+  Slide with link and additional text
+        {
         "src": slider2,
         "alt": "",
         "caption":
@@ -24,9 +29,7 @@ class Slider extends Component {
           "linkText": "Link div text",
           "href": "#"
         }
-      }]
-    };
-  }
+      }*/
 
   render() {
 
