@@ -118,7 +118,7 @@ class Sermons extends Component {
 
                         <div className="content">
                           <div className="field field-name-body field-type-text-with-summary field-label-hidden"><div className="field-items"><div className="field-item even">
-                            <p>Here you'll find all the latest talks and current sermon series we're doing at Horsham Presbyterian. Feel free to browse around and check out the different talks.
+                            <p>Here you'll find all the latest talks and current sermon series we're doing at -Church Name=. Feel free to browse around and check out the different talks.
                             </p>
                             <p>If you're after something specific, and can't find it here, then please <a href="/allsermons">click here</a> and you'll be able to search through all of our recorded sermons.</p></div></div></div>  </div>
 
