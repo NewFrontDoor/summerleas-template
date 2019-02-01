@@ -16,20 +16,11 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
             if(!tbitem.hasClass('open')){	
               tbitem.addClass('open');
             }
-            function closeMegamenu(event) {
-              console.log(event.target);
-              if (!$(event.target).parents().is(tbitem)) {
-                tbitem.removeClass('open');
-                $item.removeClass('tb-megamenu-clicked');
-                $(document).off('click',closeMegamenu);
-              }
-            }
-            $(document).on('click', closeMegamenu);
           }
-        })/*.closest('li').mouseleave( function(){
+        }).closest('li').mouseleave( function(){
           $item.removeClass('tb-megamenu-clicked');
           tbitem.removeClass('open');
-        });*/
+        });
      });
      /*
      items.children('a').children('span.caret').each( function() {
@@ -66,8 +57,7 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
   }  
   Drupal.behaviors.tbMegaMenuTouchAction = {
     attach: function(context) {
-      var isTouch = true;
-//      var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
+      var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
       if(isTouch){
         $('html').addClass('touch');
         Drupal.TBMegaMenu.createTouchMenu($('.tb-megamenu ul.nav li.mega').has('.dropdown-menu'));

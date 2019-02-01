@@ -53,14 +53,34 @@
 
 
 
-/*@media (max-width: 767px) {
+@media (max-width: 767px) {
   
-    .nestor-main-menu .navbar-toggle {
+   /* .nestor-main-menu .navbar-toggle {
       border: 1px solid #2588c9 !important;
       background: #91c2e3 !important;
       color: #000 !important;
+    }*/
+
+    .nav-collapse{
+      margin-top: -55px !important;
     }
-}*/
+
+
+  /*Stop mobile menu from flashing when losing focus*/
+  .tb-megamenu .nav-collapse .nav > li > a:hover,
+.tb-megamenu .nav-collapse .nav > li > a:focus,
+.tb-megamenu .nav-collapse .dropdown-menu a:hover,
+.tb-megamenu .nav-collapse .dropdown-menu a:focus {
+  background-color: #000;
+}
+
+.tb-megamenu .nav li.dropdown.open > .dropdown-toggle {
+  background-color: #000;
+}
+.nav .open > a, .nav .open > a:hover, .nav.open > a:focus{
+  background-color: #000;
+}
+}
 
   /*Styling for sermon load more and search*/
   /*

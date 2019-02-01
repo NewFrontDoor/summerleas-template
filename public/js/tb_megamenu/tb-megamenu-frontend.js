@@ -39,8 +39,8 @@ Drupal.TBMegaMenu = Drupal.TBMegaMenu || {};
         });
       });
       
-      var isTouch = true;      
-      //var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
+      
+      var isTouch = 'ontouchstart' in window && !(/hp-tablet/gi).test(navigator.appVersion);
       if(!isTouch){
         $(document).ready(function($){
           var mm_duration = 0;

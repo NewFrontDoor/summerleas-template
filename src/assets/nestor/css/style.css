@@ -3132,7 +3132,7 @@ label {
 .tb-megamenu .dropdown-menu li > a:hover, .tb-megamenu .dropdown-menu li > a:focus, .tb-megamenu .dropdown-submenu:hover > a {
   color: #c2b49a;
 }
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus { border-color: #c2b49a; }
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus { background-color: #fff; border-color: #c2b49a; }
 
 .tb-megamenu .dropdown { position: static; }
 .tb-megamenu .tb-megamenu-submenu { left: 0; right: 0; width: 100% !important; }
