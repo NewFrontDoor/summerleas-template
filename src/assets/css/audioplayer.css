@@ -159,11 +159,11 @@
     font-size: 19.2px;
     color: #fff; }
   .audio_player .audio_time_progress {
-    margin-right: 20px;
+    margin-right: 10px;
     -ms-grid-row-align: center;
         align-self: center;
     color: #fff;
-    font-size: 23px; }
+    font-size: 16px; }
   .audio_player .audio_button {
     padding-left: 11px;
     padding-right: 11px;

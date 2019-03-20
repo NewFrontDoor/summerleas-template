@@ -82,6 +82,41 @@
 }
 }
 
+  /*Mobile menu colour*/
+  .nestor-main-menu .navbar-toggle{
+    border: 1px solid #c2b49a !important;
+    background: #c2b49a !important;
+    color: #fff !important;
+}
+
+.navbar-header{
+text-align: center;
+width:100%;
+}
+@media (min-width:768px) and (max-width:979px){
+.navbar-toggle{
+  display: inline-block;
+  width: 250px;
+  border-radius: 0;
+  padding: 12px;
+  float: none;   
+}
+.nav-collapse{
+  margin-top: -55px !important;
+}
+}
+
+@media (max-width: 767px) {
+  .nestor-main-menu .navbar-toggle {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .nav-collapse{
+    margin-top: -55px !important;
+  }
+}
+
   /*Styling for sermon load more and search*/
   /*
 .sermon-load-more, .sermon-search-button {
