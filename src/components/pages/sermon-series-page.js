@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { decode } from 'he'
 
-import { getFromDrupalAPI } from '../../utils/fetchJSON';
+import { getFromDrupalAPI } from '../../utils/fetch-json';
 
 import '../../assets/css/allsermonspage/css_ctvtxTMYPLy1gdv3lVTneGtWHVwWHoP476bpbqSql9o.css';
 import '../../assets/css/allsermonspage/css_nnBtPUJp1fJS2GsB41ThE6FDdZwUsGHSwaEUER2e1oo.css';

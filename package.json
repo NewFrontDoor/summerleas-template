@@ -4,18 +4,28 @@
   "private": true,
   "dependencies": {
     "ajv": "^6.0.0",
-    "es6-promise": "^4.2.5",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
+    "ky": "^0.11.1",
+    "ky-universal": "^0.2.2",
     "lodash": "^4.17.10",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-iframe": "^1.1.0",
     "react-responsive-audio-player": "^1.4.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.0.1",
     "react-waypoint": "^8.1.0",
     "validator": "^10.7.1"
+  },
+  "devDependencies": {
+    "eslint-config-xo-react": "^0.20.0",
+    "eslint-plugin-emotion": "^10.0.14",
+    "eslint-plugin-jest": "^22.13.7",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "prettier": "^1.18.2",
+    "xo": "^0.24.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +38,46 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "xo": {
+    "extends": [
+      "xo-react",
+      "plugin:jest/recommended"
+    ],
+    "parser": "babel-eslint",
+    "prettier": true,
+    "space": true,
+    "plugins": [
+      "emotion",
+      "jest"
+    ],
+    "rules": {
+      "emotion/jsx-import": "error",
+      "emotion/no-vanilla": "error",
+      "emotion/import-from-emotion": "error",
+      "emotion/styled-import": "error"
+    },
+    "overrides": [
+      {
+        "files": "**/__tests__/**/*.js",
+        "rules": {
+          "import/no-unassigned-import": [
+            "error",
+            {
+              "allow": [
+                "@testing-library/jest-dom/extend-expect"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "eslint": {
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
+  }
 }

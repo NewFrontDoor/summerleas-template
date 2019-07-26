@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import Navigation from './components/Navigation';
-import HomePageWrapper from './components/homepage/HomePageWrapper';
-import OtherPageWrapper from './components/OtherPageWrapper';
-import Footer from './components/Footer';
+import Navigation from './components/navigation';
+import HomePageWrapper from './components/homepage/home-page-wrapper';
+import OtherPageWrapper from './components/other-page-wrapper';
+import Footer from './components/footer';
 
 import './assets/css/mediaelement/mediaelementplayer.min.css';
 
 import './assets/css/simplenews/simplenews.css';
 import './assets/css/alignmentstyles.css';
-
 
 import './assets/css/font-awesome/font-awesome.min.css';
 

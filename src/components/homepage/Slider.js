@@ -87,7 +87,7 @@ class Slider extends Component {
             </div>
           </div>
         </div>
-      </section >
+      </section>
     );
   }
 }

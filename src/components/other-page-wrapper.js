@@ -1,20 +1,14 @@
-/* eslint-disable */
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import OtherPageContent from './OtherPageContent';
+import OtherPageContent from './other-page-content';
 
-import AllSermons from './pages/AllSermons';
-import Sermons from './pages/Sermons';
-import SermonPage from './pages/SermonPage';
-import SermonSeriesPage from './pages/SermonSeriesPage';
-
-
-import OurPeople from './pages/OurPeople';
-
-
-import ContactUs from './pages/ContactUs';
-
+import AllSermons from './pages/all-sermons';
+import Sermons from './pages/sermons';
+import SermonPage from './pages/sermon-page';
+import SermonSeriesPage from './pages/sermon-series-page';
+import OurPeople from './pages/our-people';
+import ContactUs from './pages/contact-us';
 
 class OtherPageWrapper extends Component {
   render() {
@@ -26,7 +20,11 @@ class OtherPageWrapper extends Component {
           <Route exact path="/sermon/:nid" component={SermonPage} />
           <Route exact path="/sermon/:nid/:title" component={SermonPage} />
           <Route exact path="/series/:nid" component={SermonSeriesPage} />
-          <Route exact path="/series/:nid/:title" component={SermonSeriesPage} />
+          <Route
+            exact
+            path="/series/:nid/:title"
+            component={SermonSeriesPage}
+          />
 
           <Route exact path="/OurPeople" component={OurPeople} />
           <Route exact path="/ContactUs" component={ContactUs} />

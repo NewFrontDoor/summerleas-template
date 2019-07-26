@@ -5,7 +5,7 @@ import Waypoint from 'react-waypoint';
 
 import _ from 'lodash'
 import { decode } from 'he'
-import { getFromDrupalAPI, searchDrupalSermons } from '../../utils/fetchJSON';
+import { getFromDrupalAPI, searchDrupalSermons } from '../../utils/fetch-json';
 import $ from 'jquery';
 
 import '../../assets/css/allsermonspage/css_ctvtxTMYPLy1gdv3lVTneGtWHVwWHoP476bpbqSql9o.css';

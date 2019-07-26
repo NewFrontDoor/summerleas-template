@@ -1,7 +1,12 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 
-class OtherPageContent extends Component {
+import Person from '../models/person';
+import Male from '../../assets/img/people/Male.png';
+import Female from '../../assets/img/people/Female.png';
+
+class OurPeople extends Component {
+
   render() {
     return (
       <section>
@@ -10,7 +15,7 @@ class OtherPageContent extends Component {
             <div className="row">
               <div id="top-content-left-region" className="top-content-left col-xs-12 col-md-6 text-center-sm">
                 <div id="page-title-block" className="page-title block">
-                  <h1>Page Title</h1>
+                  <h1>Our People</h1>
                 </div>
               </div>
 
@@ -19,7 +24,7 @@ class OtherPageContent extends Component {
                   <div className="breadcrumbs">
                     <a href="/">Home</a>
                     <span className="delimiter">›</span>
-                    <span title="" className="nolink">Page Category</span>
+                    <span title="" className="nolink">Our People</span>
                   </div>
                 </div>
               </div>
@@ -35,8 +40,35 @@ class OtherPageContent extends Component {
                     <div className="content">
                       <div className="node node-page clearfix">
                         <div className="content">
+                          <div className="row">
+                            <div className="col-md-12">
+                              <h2 className="header-lightBlue text-center">Elders</h2>
 
-                          Sorry this page is still under construction, or does not exist.
+                              <Person name="Elder 1" image={Male} title="Pastor" />
+                              <Person name="Elder 2" image={Male} title="Elder" />
+                              <Person name="Elder 3" image={Male} title="Elder" />
+                              <Person name="Elder 4" image={Male} title="Elder" />
+
+                            </div>
+
+                            <div className="row">
+                              <div className="col-md-12">
+                                <h2 className="header-lightBlue text-center">Deacons</h2>
+
+                                <Person name="Deacon 1" image={Male} title="Deacon" />
+                                <Person name="Deacon 2" image={Male} title="Deacon" />
+                                <Person name="Deacon 3" image={Male} title="Deacon" />
+
+                              </div>
+
+
+                            </div>
+
+
+
+
+                          </div>
+
                         </div>
 
 
@@ -60,4 +92,4 @@ class OtherPageContent extends Component {
   }
 }
 
-export default OtherPageContent;
+export default OurPeople;
