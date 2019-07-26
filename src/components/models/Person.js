@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Person({image, name, title}) {
   return (
@@ -11,3 +12,9 @@ export default function Person({image, name, title}) {
     </div>
   );
 }
+
+Person.propTypes = {
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};

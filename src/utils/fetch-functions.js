@@ -14,15 +14,19 @@ const apiRoute = {
   sermons: 'all_sermons_api'
 };
 
-export async function fetchDrupalData(type, {limit}) {
+export async function fetchDrupalData(type, obj) {
   const result = await ky(DRUPAL_URL + apiRoute[type], {
     searchParams: {
-      display_id: 'services_1',
-      limit
+      ...obj,
+      display_id: 'services_1'
     },
     mode: 'cors',
     credentials: 'omit'
   }).json();
+  if (result.length === 1) {
+    return result[0];
+  }
+
   return result;
 }
 

@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-
-class GoogleMap extends Component {
-    render() {
-        return (
-            <div id={this.props.id} className="google-map" style={{ maxHeight: this.props.height, maxWidth: this.props.mapWidth }}></div>
-        );
-    }
+export default function GoogleMap({id, height, mapWidth}) {
+  return (
+    <div
+      id={id}
+      className="google-map"
+      style={{maxHeight: height, maxWidth: mapWidth}}
+    />
+  );
 }
 
-export default GoogleMap;
+GoogleMap.propTypes = {
+  props: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  mapWidth: PropTypes.number
+};
