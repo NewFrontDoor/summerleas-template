@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OtherPageContent() {
+export default function OtherPageContent({title, category}) {
   return (
     <section>
       <div
@@ -14,7 +14,7 @@ export default function OtherPageContent() {
               className="top-content-left col-xs-12 col-md-6 text-center-sm"
             >
               <div id="page-title-block" className="page-title block">
-                <h1>Page Title</h1>
+                <h1>{title}</h1>
               </div>
             </div>
 
@@ -30,7 +30,7 @@ export default function OtherPageContent() {
                   <a href="/">Home</a>
                   <span className="delimiter">›</span>
                   <span title="" className="nolink">
-                    Page Category
+                    {category}
                   </span>
                 </div>
               </div>

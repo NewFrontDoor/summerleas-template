@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {getFromDrupalAPI} from '../../utils/fetch-json';
 import {CurrentSeries, LatestSermon, RecentSeries} from './sermon-components';
+import TitleBreadcrumb from './title-breadcrumb';
 
 const SERMON_LIMIT = 1;
 
@@ -21,40 +22,10 @@ export default function Sermons() {
 
   return (
     <section>
-      <div
-        id="top-content-region"
-        className="top-content padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1"
-      >
-        <div className="container">
-          <div className="row">
-            <div
-              id="top-content-left-region"
-              className="top-content-left col-xs-12 col-md-6 text-center-sm"
-            >
-              <div id="page-title-block" className="page-title block">
-                <h1>Sermons</h1>
-              </div>
-            </div>
-            <div
-              id="top-content-right-region"
-              className="top-content-right col-xs-12 col-md-6 text-right text-center-sm"
-            >
-              <div
-                id="page-breadcrumbs-block"
-                className="page-breadcrumbs block"
-              >
-                <div className="breadcrumbs">
-                  <a href="/">Home</a>
-                  <span className="delimiter">›</span>
-                  <span title="" className="nolink">
-                    Resources
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <TitleBreadcrumb
+        title="Sermons"
+        breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
+      />
       <div id="content-region">
         <div className="container">
           <div className="row">

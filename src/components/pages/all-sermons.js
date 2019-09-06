@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Waypoint from 'react-waypoint';
 import $ from 'jquery';
 import {getFromDrupalAPI, searchDrupalSermons} from '../../utils/fetch-json';
+import TitleBreadcrumb from './title-breadcrumb';
 
 import '../../assets/css/allsermonspage/css_ctvtxTMYPLy1gdv3lVTneGtWHVwWHoP476bpbqSql9o.css';
 import '../../assets/css/allsermonspage/css_nnBtPUJp1fJS2GsB41ThE6FDdZwUsGHSwaEUER2e1oo.css';
@@ -177,41 +178,10 @@ export default class Sermons extends Component {
 
     return (
       <section>
-        <div
-          id="top-content-region"
-          className="top-content padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1"
-        >
-          <div className="container">
-            <div className="row">
-              <div
-                id="top-content-left-region"
-                className="top-content-left col-xs-12 col-md-6 text-center-sm"
-              >
-                <div id="page-title-block" className="page-title block">
-                  <h1>All Sermons</h1>
-                </div>
-              </div>
-
-              <div
-                id="top-content-right-region"
-                className="top-content-right col-xs-12 col-md-6 text-right text-center-sm"
-              >
-                <div
-                  id="page-breadcrumbs-block"
-                  className="page-breadcrumbs block"
-                >
-                  <div className="breadcrumbs">
-                    <a href="/">Home</a>
-                    <span className="delimiter">›</span>
-                    <span title="" className="nolink">
-                      Resources
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TitleBreadcrumb
+          title="All Sermons"
+          breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
+        />
 
         <div id="content-region">
           <div className="container">
@@ -226,8 +196,7 @@ export default class Sermons extends Component {
                           className="form-control"
                           id="sermonSelect"
                           onChange={event =>
-                            this.loadSermonSeries(event.target.value)
-                          }
+                            this.loadSermonSeries(event.target.value)}
                         >
                           <option value="">---</option>
                           {this.state.sermonSeries.map(sermonSeries => {

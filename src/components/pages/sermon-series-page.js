@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TitleBreadcrumb from './title-breadcrumb';
 import {getFromDrupalAPI} from '../../utils/fetch-json';
 
 import '../../assets/css/allsermonspage/css_ctvtxTMYPLy1gdv3lVTneGtWHVwWHoP476bpbqSql9o.css';
@@ -22,10 +23,10 @@ class SermonSeriesPage extends Component {
   }
 
   componentWillMount() {
-    let that = this;
+    const that = this;
     getFromDrupalAPI(
       'all_sermons_api?filters[sermonSeries]=' + this.state.sermonSeriesID,
-      function(data) {
+      (data) => {
         that.setState({
           sermons: data,
           seriesImgThumb: data[0].series_img,
@@ -36,7 +37,7 @@ class SermonSeriesPage extends Component {
   }
 
   render() {
-    var seriesTitle = 'Series Title';
+    let seriesTitle = 'Series Title';
     if (this.state.sermons) {
       if (this.state.sermons.length > 0) {
         var seriesImg = this.state.seriesImgFull
@@ -47,19 +48,21 @@ class SermonSeriesPage extends Component {
           <tr key={sermon.nid} className="odd even">
             {sermon.node_title ? (
               <td
-                style={{padding: '0px 5px 0px 5px'}}
                 dangerouslySetInnerHTML={{__html: sermon.node_url}}
+                style={{padding: '0px 5px 0px 5px'}}
               />
             ) : (
-              <td style={{padding: '0px 5px 0px 5px'}}></td>
+              <td style={{padding: '0px 5px 0px 5px'}} />
             )}
 
-            <td style={{padding: '0px 5px 0px 5px'}}>{sermon.text ? sermon.text : ''}</td>
+            <td style={{padding: '0px 5px 0px 5px'}}>
+              {sermon.text ? sermon.text : ''}
+            </td>
             <td style={{padding: '0px 5px 0px 5px'}}>{sermon.preacher}</td>
             <td style={{padding: '0px 5px 0px 5px'}}>{sermon.datepreached}</td>
             <td style={{padding: '0px 5px 0px 5px'}}>
               <a href={sermon.url} target="_blank" rel="noopener noreferrer">
-                <i className="fa fa-download"></i>
+                <i className="fa fa-download" />
               </a>
             </td>
           </tr>
@@ -79,41 +82,10 @@ class SermonSeriesPage extends Component {
 
     return (
       <section>
-        <div
-          id="top-content-region"
-          className="top-content padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1"
-        >
-          <div className="container">
-            <div className="row">
-              <div
-                id="top-content-left-region"
-                className="top-content-left col-xs-12 col-md-6 text-center-sm"
-              >
-                <div id="page-title-block" className="page-title block">
-                  <h1>{seriesTitle !== 'Series Title' ? seriesTitle : ''}</h1>
-                </div>
-              </div>
-
-              <div
-                id="top-content-right-region"
-                className="top-content-right col-xs-12 col-md-6 text-right text-center-sm"
-              >
-                <div
-                  id="page-breadcrumbs-block"
-                  className="page-breadcrumbs block"
-                >
-                  <div className="breadcrumbs">
-                    <a href="/">Home</a>
-                    <span className="delimiter">›</span>
-                    <span title="" className="nolink">
-                      Resources
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TitleBreadcrumb
+          title={seriesTitle}
+          breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
+        />
         <div id="content-region">
           <div className="container">
             <div className="row">

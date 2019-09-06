@@ -13,11 +13,6 @@ import './assets/css/alignmentstyles.css';
 
 import './assets/css/font-awesome/font-awesome.min.css';
 
-import './assets/css/tb_megamenu/bootstrap.css';
-import './assets/css/tb_megamenu/base.css';
-import './assets/css/tb_megamenu/default.css';
-import './assets/css/tb_megamenu/compatibility.css';
-
 import './assets/nestor/css/bootstrap.min.css';
 import './assets/nestor/css/ionicons.min.css';
 import './assets/nestor/css/flexslider.css';
