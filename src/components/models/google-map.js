@@ -1,19 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {GoogleMap, LoadScript, Marker} from '@react-google-maps/api';
+import {mapsKey} from '../../lib/config';
 
-export default function GoogleMap({id, height, mapWidth}) {
+export default function Map({height, mapWidth, location}) {
   return (
-    <div
-      id={id}
-      className="google-map"
-      style={{maxHeight: height, maxWidth: mapWidth}}
-    />
+    <LoadScript id="script-loader" googleMapsApiKey={mapsKey}>
+      <GoogleMap
+        id="example-map"
+        mapContainerStyle={{
+          height,
+          width: mapWidth
+        }}
+        zoom={14}
+        center={{
+          lat: location.lat,
+          lng: location.lng
+        }}
+        options={{
+          disableDefaultUI: true
+        }}
+      >
+        <Marker
+          position={{
+            lat: location.lat,
+            lng: location.lng
+          }}
+        />
+      </GoogleMap>
+    </LoadScript>
   );
 }
 
-GoogleMap.propTypes = {
-  props: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired,
+Map.propTypes = {
+  location: PropTypes.object.isRequired,
   height: PropTypes.number.isRequired,
   mapWidth: PropTypes.number
 };

@@ -1,24 +1,28 @@
 import React, {useState, useEffect} from 'react';
-import {getFromDrupalAPI} from '../../utils/fetch-json';
+import {Link} from 'react-router-dom'
+import {fetchDrupalData} from '../../utils/fetch-functions';
 import {CurrentSeries, LatestSermon, RecentSeries} from './sermon-components';
 import TitleBreadcrumb from './title-breadcrumb';
 
-const SERMON_LIMIT = 1;
-
-export default function Sermons() {
-  const [sermons, setSermons] = useState(null);
+export default function Sermons({globalSermons, setGlobalSermons}) {
+  const [sermons, setSermons] = useState(globalSermons);
   const [recentSeries, setRecentSeries] = useState(null);
-  const [latestSermon, setLatestSermon] = useState(null);
 
   useEffect(() => {
-    getFromDrupalAPI('all_sermons_api?limit=' + SERMON_LIMIT, data => {
-      setSermons(data);
-      setLatestSermon(data[0]);
+    setSermons(globalSermons);
+  }, [globalSermons]);
+
+  useEffect(() => {
+    if (!sermons) {
+      fetchDrupalData('sermons', {}).then(response => {
+        setGlobalSermons(response);
+      });
+    }
+
+    fetchDrupalData('recent', {}).then(response => {
+      setRecentSeries(response);
     });
-    getFromDrupalAPI('recent_series_api', data => {
-      setRecentSeries(data);
-    });
-  });
+  }, [sermons, setGlobalSermons]);
 
   return (
     <section>
@@ -40,16 +44,16 @@ export default function Sermons() {
                             <div className="field-item even">
                               <p>
                                 Here you'll find all the latest talks and
-                                current sermon series we're doing at -Church
+                                current sermon series we're doing at =Church
                                 Name=. Feel free to browse around and check out
                                 the different talks.
                               </p>
                               <p>
                                 If you're after something specific, and can't
                                 find it here, then please{' '}
-                                <a href="/allsermons">click here</a> and you'll
-                                be able to search through all of our recorded
-                                sermons.
+                                <Link to="/allsermons">click here</Link> and
+                                you'll be able to search through all of our
+                                recorded sermons.
                               </p>
                             </div>
                           </div>
@@ -77,7 +81,9 @@ export default function Sermons() {
                   <div className="content">
                     <div className="view view-featured-sermon-1 view-id-featured_sermon_1 view-display-id-block_2 featured-sermon view-dom-id-d5bca4c880cfad7dc17e65326ab52965">
                       <div className="view-content">
-                        <LatestSermon latestSermon={latestSermon} />
+                        <LatestSermon
+                          latestSermon={sermons ? sermons[0] : ''}
+                        />
                       </div>
                     </div>
                   </div>
@@ -95,7 +101,9 @@ export default function Sermons() {
                     <div className="view view-sermon-series view-id-sermon_series view-display-id-block featured-sermon view-dom-id-f76384e2578054bee9a594ea133e2b10">
                       <div className="view-content">
                         <div className="views-row views-row-1 views-row-odd views-row-first views-row-last">
-                          <CurrentSeries latestSermon={latestSermon} />
+                          <CurrentSeries
+                            latestSermon={sermons ? sermons[0] : ''}
+                          />
                         </div>
                       </div>
                     </div>

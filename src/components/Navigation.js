@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import {Link} from 'react-router-dom';
 import logo from '../assets/img/logo.png';
 import Menu from './menu';
 
-const menudata = require('../utils/menu-items.json');
+const menudata = require('../sample-data/menu-items.json');
 
 const Header = styled('header')`
   display: flex;
@@ -32,7 +33,7 @@ const MenuButton = styled('button')`
   }
 `;
 
-const Logo = styled('a')`
+const Logo = styled(Link)`
   flex: 0 1 auto;
 `;
 
@@ -44,7 +45,7 @@ export default function Navigation() {
   const [menuVisible, toggleMenuVisible] = useState(false);
   return (
     <Header>
-      <Logo href="/">
+      <Logo to="/">
         <img src={logo} alt="Home" />
       </Logo>
       <MenuButton type="button" onClick={() => toggleMenuVisible(!menuVisible)}>

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import styled from '@emotion/styled';
 import {fetchDrupalData} from '../../utils/fetch-functions';
 import LatestSermon from './latest-sermon';
 import WhereToFindUs from './where-to-find-us';
@@ -34,28 +35,41 @@ const placeholderEvents = [
   }
 ];
 
-export default function HomePageContent() {
-  const [latestSermon, setLatestSermon] = useState({});
+const Section = styled('section')`
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85vw;
+  @media (min-width: 770px) {
+    max-width: 1170px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+`;
+
+export default function HomePageContent({globalSermons, setGlobalSermons}) {
+  const [sermons, setSermons] = useState(globalSermons);
   const [churchDetails, setChurchDetails] = useState(churchDeets);
   const [upcomingEvents, setUpcomingEvents] = useState(placeholderEvents);
 
   useEffect(() => {
-    fetchDrupalData('sermons', {limit: 1}).then(response => {
-      setLatestSermon(response);
-    });
-  }, []);
+    setSermons(globalSermons);
+  }, [globalSermons]);
+
+  useEffect(() => {
+    if (!sermons) {
+      fetchDrupalData('sermons', {}).then(response => {
+        setGlobalSermons(response);
+      });
+    }
+  }, [sermons, setGlobalSermons]);
 
   return (
-    <section>
-      <div className="content-2 bg-color-white text-color-default">
-        <div className="container">
-          <div className="row">
-            <LatestSermon latestSermon={latestSermon} />
-            <WhereToFindUs churchDetails={churchDetails} />
-            <UpcomingEvents upcomingEvents={upcomingEvents} />
-          </div>
-        </div>
-      </div>
-    </section>
+    <Section>
+      <LatestSermon latestSermon={sermons ? sermons[0] : ''} />
+      <WhereToFindUs churchDetails={churchDetails} />
+      <UpcomingEvents upcomingEvents={upcomingEvents} />
+    </Section>
   );
 }

@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GoogleMap from '../models/google-map';
+import Map from '../models/google-map';
 
 export default function WhereToFindUs({
   churchDetails: {churchName, streetAddress, city, state}
 }) {
   return (
-    <section className="col-md-4 col-xs-12">
+    <section>
       <h2>Where to Find Us</h2>
-      <div className="content">
-        <GoogleMap id="map_canvas" height="360px" />
-        <a href="https://goo.gl/maps/yF5VjdUgXPq">{churchName}</a>
-        <p>{streetAddress}</p>
-        <p>
-          {city}, {state}
-        </p>
-      </div>
+
+      <Map
+        location={{lat: -31.9716063, lng: 115.8918229}}
+        height="360px"
+        mapWidth="100%"
+      />
+      <a href="https://goo.gl/maps/yF5VjdUgXPq">{churchName}</a>
+      <p>{streetAddress}</p>
+      <p>
+        {city}, {state}
+      </p>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 export function CurrentSeries({latestSermon}) {
   if (latestSermon === null) {
@@ -9,21 +10,21 @@ export function CurrentSeries({latestSermon}) {
     <section>
       <div className="views-field views-field-field-thumbnail-image">
         <div className="field-content">
-          <a href={'/series/' + latestSermon.series_id}>
+          <Link to={'/series/' + latestSermon.series_id}>
             <img
               src={latestSermon.series_img}
               width="600"
               height="450"
               alt=""
             />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="views-field views-field-title">
         <span className="field-content">
-          <a href={'/series/' + latestSermon.series_id}>
+          <Link to={'/series/' + latestSermon.series_id}>
             {latestSermon.sermonseries}
-          </a>
+          </Link>
         </span>
       </div>
     </section>
@@ -39,22 +40,22 @@ export function LatestSermon({latestSermon}) {
     <div className="views-row views-row-1 views-row-odd views-row-first views-row-last">
       <div className="views-field views-field-field-thumbnail-image">
         <div className="field-content">
-          <a href={`/sermon/${latestSermon.nid}`}>
+          <Link to={`/sermon/${latestSermon.nid}`}>
             <img
               src={latestSermon.sermon_img}
               width="600"
               height="450"
               alt=""
             />
-          </a>
+          </Link>
         </div>
       </div>
       <div className="views-field views-field-title-1">
         <span className="field-content">
           {latestSermon.sermonseries ? (
-            <a
+            <Link
               dangerouslySetInnerHTML={{__html: latestSermon.sermonseries}}
-              href={'/series/' + latestSermon.series_id}
+              to={'/series/' + latestSermon.series_id}
             />
           ) : (
             ''
@@ -63,9 +64,9 @@ export function LatestSermon({latestSermon}) {
       </div>
       <div>
         <span>
-          <a href={`/sermon/${latestSermon.nid}`}>
+          <Link to={`/sermon/${latestSermon.nid}`}>
             {latestSermon.node_title ? latestSermon.node_title : `Untitled`}
-          </a>
+          </Link>
         </span>
       </div>
       <div className="views-field views-field-field-preacher">
@@ -91,16 +92,16 @@ export function RecentSeries({recentSeries}) {
       >
         <div className="views-field views-field-field-thumbnail-image">
           <div className="field-content">
-            <a href={'/series/' + series.series_id}>
+            <Link to={'/series/' + series.series_id}>
               <img src={series.series_img} width="300" height="300" alt="" />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="views-field views-field-title">
           <span className="field-content">
-            <a
+            <Link
               dangerouslySetInnerHTML={{__html: series.node_title}}
-              href={'/series/' + series.series_id}
+              to={'/series/' + series.series_id}
             />
           </span>
         </div>

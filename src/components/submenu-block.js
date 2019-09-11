@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import {Link} from 'react-router-dom';
 
 const Wrapper = styled('div')`
   position: absolute;
@@ -56,7 +57,7 @@ const SubmenuList = styled('div')`
   }
 `;
 
-const Link = styled('a')`
+const Anchor = styled(Link)`
   font-size: 14px;
   line-height: 20px;
   padding: 5px 0;
@@ -75,7 +76,7 @@ export default function SubmenuBlock({submenu: {blurb, menus}, visible}) {
             <Header>{list.header}</Header>
             {list.items.map(item => (
               <li>
-                <Link href={item.url}>{item.name}</Link>
+                <Anchor to={item.url}>{item.name}</Anchor>
               </li>
             ))}
           </ul>

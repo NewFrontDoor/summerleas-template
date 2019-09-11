@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {fetchDrupalData} from '../../utils/fetch-functions';
 import SermonBlock from './sermon-block';
 import TitleBreadcrumb from './title-breadcrumb';
+import {Link} from 'react-router-dom';
 
 export default function SermonPage({
   match: {
@@ -10,8 +11,8 @@ export default function SermonPage({
 }) {
   const [sermon, setSermon] = useState(null);
   useEffect(() => {
-    fetchDrupalData('sermons', {'filters[nid]': nid}).then(response => {
-      setSermon(response);
+    fetchDrupalData('sermons', {filters: [{nid}]}).then(response => {
+      setSermon(response[0]);
     });
   }, [nid]);
 
@@ -29,7 +30,7 @@ export default function SermonPage({
             <p>Sorry, that sermon could not be found.</p>
             <p>
               You can find all of our available sermons on{' '}
-              <a href="/allsermons">this page.</a>
+              <Link to="/allsermons">this page.</Link>
             </p>
           </>
         )}

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ThemeProvider} from 'emotion-theming';
 import styled from '@emotion/styled';
+import {Link} from 'react-router-dom';
 import SubmenuBlock from './submenu-block';
 
 const theme = {
@@ -50,14 +51,12 @@ export default function Menu({items, isVisible}) {
             return (
               <li>
                 <a
-                  className="dropdown-toggle"
                   title={title}
                   style={{
                     cursor: 'pointer'
                   }}
                   onClick={() =>
-                    updateOpenMenu(openMenu === title ? null : title)
-                  }
+                    updateOpenMenu(openMenu === title ? null : title)}
                 >
                   {title}
                   <Caret />
@@ -69,7 +68,7 @@ export default function Menu({items, isVisible}) {
 
           return (
             <li>
-              <a href={slug}>{name}</a>
+              <Link to={slug}>{name}</Link>
             </li>
           );
         })}

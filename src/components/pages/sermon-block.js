@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
 
@@ -40,7 +41,7 @@ export default function SermonBlock({
         </div>
         <div className="field field-name-field-sermon-series field-type-node-reference field-label-above">
           <div className="field-label">Sermon Series: </div>
-          <a href={'/series/' + series_id}>{sermonseries}</a>
+          <Link to={'/series/' + series_id}>{sermonseries}</Link>
         </div>
         {text ? (
           <div className="field field-name-field-bible-book-s- field-type-taxonomy-term-reference field-label-above">

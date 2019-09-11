@@ -2,22 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
+import styled from '@emotion/styled';
+import {Link} from 'react-router-dom';
+
+const Img = styled('img')`
+  width: 100%;
+  height: 100%;
+`;
 
 export default function LatestSermon({
   latestSermon: {nid, sermon_img, node_title, preacher, url}
 }) {
   return (
-    <section className="col-md-4 col-xs-12">
+    <section>
       <h2>Latest Sermon</h2>
       {node_title ? (
-        <div className="content">
-          <img
-            className="latestSermon-img"
-            src={sermon_img}
-            width="600"
-            height="450"
-          />
-          <a href={`/sermon/${nid}`}>{node_title}</a>
+        <div>
+          <Img src={sermon_img} />
+          <Link to={`/sermon/${nid}`}>{node_title}</Link>
           <div>{preacher}</div>
           <AudioPlayer
             playlist={[{url}]}

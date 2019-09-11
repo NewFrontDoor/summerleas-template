@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function TitleBreadcrumb({title, breadcrumbs}) {
   return (
@@ -26,7 +27,11 @@ export default function TitleBreadcrumb({title, breadcrumbs}) {
                 {breadcrumbs.map(crumb => {
                   return (
                     <React.Fragment key={crumb[0]}>
-                      <a href={crumb[1]}>{crumb[0]}</a>
+                      {!crumb[1] ? (
+                        <span>{crumb[0]}</span>
+                      ) : (
+                        <Link to={crumb[1]}>{crumb[0]}</Link>
+                      )}
                       <span className="delimiter">›</span>
                     </React.Fragment>
                   );
