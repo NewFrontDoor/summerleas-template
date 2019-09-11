@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
 import {jsx, css} from '@emotion/core';
+import {IoIosPin, IoIosMail, IoLogoFacebook, IoLogoTwitter} from 'react-icons/io';
 
 const Grid = styled('div')`
   display: grid;
@@ -30,7 +31,16 @@ export default function Footer() {
     <section>
       <Grid>
         <div css={centered}>
-          <i className="icon ion-ios7-location-outline size-32 margin-bottom-20" />
+          <IoIosPin
+            style={{
+              stroke: 'white',
+              strokeWidth: '20px',
+              fill: 'none',
+              width: '2em',
+              height: '2em',
+              marginBottom: '20px'
+            }}
+          />
           <p>
             <a href="https://goo.gl/maps/yF5VjdUgXPq">Location</a>
             <br />
@@ -38,14 +48,32 @@ export default function Footer() {
           </p>
         </div>
         <div css={centered}>
-          <i className="icon ion-ios7-email-outline size-32 margin-bottom-20" />
+          <IoIosMail
+            style={{
+              stroke: 'white',
+              strokeWidth: '20px',
+              fill: 'none',
+              width: '2em',
+              height: '2em',
+              marginBottom: '20px'
+            }}
+          />
           <p>
             <a href="mailto:">Contact Email(s)</a>
             <br />
           </p>
         </div>
         <div css={centered}>
-          <i className="icon ion-social-facebook-outline size-32 margin-bottom-20" />
+        <IoLogoFacebook
+            style={{
+              stroke: 'white',
+              strokeWidth: '20px',
+              fill: 'none',
+              width: '2em',
+              height: '2em',
+              marginBottom: '20px'
+            }}
+          />
           <p>
             <a href="#">Social media page(s)</a>
             <br />
@@ -61,13 +89,13 @@ export default function Footer() {
         </div>
         <div css={{textAlign: 'right'}}>
           <a href="https://www.facebook.com/NewFrontDoorIT/">
-            <i className="icon ion-social-facebook" />
+            <IoLogoFacebook style={{fill: '#f0f0f0'}} />
           </a>
           <a href="https://twitter.com/NewFrontDoorIT">
-            <i className="icon ion-social-twitter" />
+            <IoLogoTwitter style={{fill: '#f0f0f0'}} />
           </a>
           <a href="mailto:contactus@newfrontdoor.org">
-            <i className="icon ion-email" />
+            <IoIosMail style={{fill: '#f0f0f0'}} />
           </a>
         </div>
       </MetaGrid>

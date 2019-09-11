@@ -1,46 +1,57 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import styled from '@emotion/styled';
+import ContentWrapper from '../content-wrapper';
+
+const Wrapper = styled.div`
+  background-color: #f6f6f6;
+  padding: 15px 0;
+`;
+
+const Inner = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Title = styled.h1`
+  font-size: 1.6em;
+  margin: 0;
+`;
+
+const Breadcrumbs = styled.div`
+  font-size: 0.8em;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  line-height: 2.1em;
+`;
+
+const Delimiter = styled.span`
+  padding: 0 5px;
+`;
 
 export default function TitleBreadcrumb({title, breadcrumbs}) {
   return (
-    <div
-      id="top-content-region"
-      className="top-content padding-top-15 padding-bottom-15 block-15 bg-color-grayLight1"
-    >
-      <div className="container">
-        <div className="row">
-          <div
-            id="top-content-left-region"
-            className="top-content-left col-xs-12 col-md-6 text-center-sm"
-          >
-            <div id="page-title-block" className="page-title block">
-              <h1>{title}</h1>
-            </div>
-          </div>
-
-          <div
-            id="top-content-right-region"
-            className="top-content-right col-xs-12 col-md-6 text-right text-center-sm"
-          >
-            <div id="page-breadcrumbs-block" className="page-breadcrumbs block">
-              <div className="breadcrumbs">
-                {breadcrumbs.map(crumb => {
-                  return (
-                    <React.Fragment key={crumb[0]}>
-                      {!crumb[1] ? (
-                        <span>{crumb[0]}</span>
-                      ) : (
-                        <Link to={crumb[1]}>{crumb[0]}</Link>
-                      )}
-                      <span className="delimiter">›</span>
-                    </React.Fragment>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Wrapper>
+      <ContentWrapper width="wide" styles="padding: 15px;">
+        <Inner>
+          <Title>{title}</Title>
+          <Breadcrumbs>
+            {breadcrumbs.map(crumb => {
+              return (
+                <React.Fragment key={crumb[0]}>
+                  {!crumb[1] ? (
+                    <span>{crumb[0]}</span>
+                  ) : (
+                    <Link to={crumb[1]}>{crumb[0]}</Link>
+                  )}
+                  <Delimiter>›</Delimiter>
+                </React.Fragment>
+              );
+            })}
+          </Breadcrumbs>
+        </Inner>
+      </ContentWrapper>
+    </Wrapper>
   );
 }

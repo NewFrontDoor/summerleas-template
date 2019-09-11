@@ -9,16 +9,13 @@ import Footer from './components/footer';
 
 import './assets/css/mediaelement/mediaelementplayer.min.css';
 
-import './assets/css/font-awesome/font-awesome.min.css';
-
 import './assets/nestor/css/bootstrap.min.css';
-import './assets/nestor/css/ionicons.min.css';
 import './assets/nestor/css/style.css';
 
 import './assets/nestor/css/color/brown.css';
 
 require("typeface-lato");
-require("typeface-roboto");
+require("typeface-roboto-slab");
 
 const globalStyles = css`
   body {

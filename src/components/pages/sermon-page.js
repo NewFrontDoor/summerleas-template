@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import {fetchDrupalData} from '../../utils/fetch-functions';
+import ContentWrapper from '../content-wrapper';
 import SermonBlock from './sermon-block';
 import TitleBreadcrumb from './title-breadcrumb';
-import {Link} from 'react-router-dom';
 
 export default function SermonPage({
   match: {
@@ -22,7 +23,7 @@ export default function SermonPage({
         title={sermon ? sermon.node_title : 'Loading...'}
         breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
       />
-      <div className="container">
+      <ContentWrapper>
         {sermon ? (
           <SermonBlock sermon={sermon} />
         ) : (
@@ -34,7 +35,7 @@ export default function SermonPage({
             </p>
           </>
         )}
-      </div>
+      </ContentWrapper>
     </>
   );
 }

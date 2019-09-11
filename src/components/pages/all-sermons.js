@@ -55,7 +55,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
   }, [sermons, setGlobalSermons]);
 
   function loadSeries(nid) {
-    if ((nid === '' || nid === undefined) && !sermons) {
+    if (nid === '' || nid === undefined) {
       fetchDrupalData('sermons', {}).then(response => {
         setSermons(response);
         setSeriesValue('');

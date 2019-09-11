@@ -19,8 +19,9 @@ const Wrapper = styled.section`
         ? '970px'
         : '750px'};
   }
+  ${props => props.styles}
 `;
 
-export default function ContentWrapper({children, width}) {
-  return <Wrapper width={width}>{children}</Wrapper>;
+export default function ContentWrapper({children, width, styles}) {
+  return <Wrapper width={width} styles={styles}>{children}</Wrapper>;
 }

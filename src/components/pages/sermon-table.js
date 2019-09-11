@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import {Link} from 'react-router-dom';
+import {FaDownload} from 'react-icons/fa';
 
 const Table = styled.table`
   border-collapse: collapse;
+  width: 100%;
 `;
 
 const Tr = styled.tr`
@@ -30,14 +32,19 @@ export default function SermonTable({sermons}) {
         {sermons.map((sermon, index) => (
           <Tr key={sermon.nid} num={index}>
             <td>
-              <Link to={`/sermon/${sermon.nid}`} dangerouslySetInnerHTML={{__html: sermon.node_title ? sermon.node_title : 'untitled'}} />
+              <Link
+                to={`/sermon/${sermon.nid}`}
+                dangerouslySetInnerHTML={{
+                  __html: sermon.node_title ? sermon.node_title : 'untitled'
+                }}
+              />
             </td>
             <td>{sermon.text ? sermon.text : ''}</td>
             <td>{sermon.preacher ? sermon.preacher : ''}</td>
             <td>{sermon.datepreached ? sermon.datepreached : ''}</td>
             <td>
               <a href={sermon.url} target="_blank" rel="noopener noreferrer">
-                <i className="fa fa-download" />
+                <FaDownload />
               </a>
             </td>
           </Tr>

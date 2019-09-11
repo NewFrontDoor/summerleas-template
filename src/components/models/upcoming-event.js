@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import {IoIosCalendar} from 'react-icons/io';
 
 const EventWrapper = styled.div`
   padding: 8px;
@@ -9,7 +10,7 @@ const EventWrapper = styled.div`
   margin-bottom: 5px;
 `;
 
-const Icon = styled.div`
+const Icon = styled(IoIosCalendar)`
   font-size: 40px;
   float: left;
 `;
@@ -27,7 +28,7 @@ const Date = styled.div`
 export default function UpcomingEvent({title, startdate}) {
   return (
     <EventWrapper>
-      <Icon className="ion-calendar" />
+      <Icon />
 
       <Title>{title}</Title>
       <Date>{startdate}</Date>
