@@ -28,11 +28,11 @@ const Title = styled.p`
 export default function Person({image, name, title}) {
   console.log(image);
   return (
-    <div>
+    <React.Fragment>
       <Img src={image} alt={name} />
       <Name>{name}</Name>
       <Title>{title}</Title>
-    </div>
+    </React.Fragment>
   );
 }
 

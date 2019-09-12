@@ -132,7 +132,6 @@ export default function ContactForm() {
 
                 <div>
                   <button
-                    className="btn btn-primary btn-sm form-submit"
                     type="submit"
                     name="submit"
                     disabled={submitting || pristine}

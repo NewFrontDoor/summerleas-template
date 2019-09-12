@@ -14,8 +14,8 @@ import './assets/nestor/css/style.css';
 
 import './assets/nestor/css/color/brown.css';
 
-require("typeface-lato");
-require("typeface-roboto-slab");
+require('typeface-lato');
+require('typeface-roboto-slab');
 
 const globalStyles = css`
   body {
@@ -65,29 +65,27 @@ export default function App() {
   return (
     <Router>
       <Global styles={globalStyles} />
-      <div className="App">
-        <Route path="*" component={Navigation} />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <HomePageWrapper
-              globalSermons={globalSermons}
-              setGlobalSermons={setGlobalSermons}
-            />
-          )}
-        />
-        <Route
-          path="/:path"
-          render={() => (
-            <OtherPageWrapper
-              globalSermons={globalSermons}
-              setGlobalSermons={setGlobalSermons}
-            />
-          )}
-        />
-        <Route path="*" component={Footer} />
-      </div>
+      <Route path="*" component={Navigation} />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <HomePageWrapper
+            globalSermons={globalSermons}
+            setGlobalSermons={setGlobalSermons}
+          />
+        )}
+      />
+      <Route
+        path="/:path"
+        render={() => (
+          <OtherPageWrapper
+            globalSermons={globalSermons}
+            setGlobalSermons={setGlobalSermons}
+          />
+        )}
+      />
+      <Route path="*" component={Footer} />
     </Router>
   );
 }
