@@ -79,7 +79,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
         </ContentWrapper>
       </Alt>
       <ContentWrapper width="wide">
-        <h2 className="header-lightBlue text-center-sm">Recent Series</h2>
+        <h2>Recent Series</h2>
         <RecentSeries recentSeries={recentSeries} />
       </ContentWrapper>
     </section>

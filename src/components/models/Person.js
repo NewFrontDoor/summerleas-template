@@ -26,13 +26,12 @@ const Title = styled.p`
 `;
 
 export default function Person({image, name, title}) {
-  console.log(image);
   return (
-    <React.Fragment>
+    <div>
       <Img src={image} alt={name} />
       <Name>{name}</Name>
       <Title>{title}</Title>
-    </React.Fragment>
+    </div>
   );
 }
 

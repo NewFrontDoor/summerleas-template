@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Global, css} from '@emotion/core';
-
 import Navigation from './components/navigation';
 import HomePageWrapper from './components/homepage/home-page-wrapper';
 import OtherPageWrapper from './components/other-page-wrapper';
 import Footer from './components/footer';
-
-import './assets/css/mediaelement/mediaelementplayer.min.css';
-
-import './assets/nestor/css/bootstrap.min.css';
-import './assets/nestor/css/style.css';
-
-import './assets/nestor/css/color/brown.css';
 
 require('typeface-lato');
 require('typeface-roboto-slab');
@@ -20,8 +12,6 @@ require('typeface-roboto-slab');
 const globalStyles = css`
   body {
     color: #777;
-    font-size: 1.6em;
-    line-height: 1.6em;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     text-rendering: optimizeLegibility;
@@ -35,6 +25,7 @@ const globalStyles = css`
     -moz-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+    color: #c2b49a;
   }
 
   a:hover,

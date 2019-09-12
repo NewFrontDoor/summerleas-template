@@ -2,6 +2,26 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import AudioPlayer from 'react-responsive-audio-player';
 import '../../assets/css/audioplayer.css';
+import styled from '@emotion/styled';
+
+const OuterGrid = styled.section`
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 40px;
+  grid-template-rows: auto;
+  justify-content: space-around;
+  align-content: space-around;
+  gap: 40px;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+  }
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: ${props => (props.columns ? props.columns : '')};
+`;
 
 export default function SermonBlock({
   sermon: {
@@ -16,42 +36,22 @@ export default function SermonBlock({
   }
 }) {
   return (
-    <section key={`${node_title}-key`} style={{display: 'flex'}}>
-      <div style={{flex: '0 1 auto'}}>
-        <img className="img-responsive sermon-page-image" src={sermon_img} />
-      </div>
-      <div style={{flex: '0 1 auto', width: '200px'}}>
-        <div className="field field-name-field-date-preached field-type-datetime field-label-above">
-          <div className="field-label">Date Preached: </div>
-          <p>{datepreached}</p>
+    <OuterGrid>
+      <img src={sermon_img} style={{width: '100%'}} />
+      <Grid>
+        <div>Date Preached: {datepreached}</div>
+        <div>Preacher: {preacher}</div>
+        <div>Sermon: </div>
+        <AudioPlayer
+          playlist={[{url}]}
+          controls={['playpause', 'spacer', 'progress']}
+        />
+        <a href={url}>Download</a>
+        <div>
+          Sermon Series: <Link to={'/series/' + series_id}>{sermonseries}</Link>
         </div>
-        <div className="field field-name-field-preacher field-type-text field-label-above">
-          <div className="field-label">Preacher: </div>
-          <p>{preacher}</p>
-        </div>
-        <div className="field field-name-field-sermon field-type-file field-label-above">
-          <div className="field-label">Sermon: </div>
-          <div style={{padding: '0', maxWidth: '360px'}}>
-            <AudioPlayer
-              playlist={[{url}]}
-              controls={['playpause', 'spacer', 'progress']}
-            />
-          </div>
-          <a href={url}>Download</a>
-        </div>
-        <div className="field field-name-field-sermon-series field-type-node-reference field-label-above">
-          <div className="field-label">Sermon Series: </div>
-          <Link to={'/series/' + series_id}>{sermonseries}</Link>
-        </div>
-        {text ? (
-          <div className="field field-name-field-bible-book-s- field-type-taxonomy-term-reference field-label-above">
-            <div className="field-label">Bible Passage(s): </div>
-            <p>{text}</p>
-          </div>
-        ) : (
-          ''
-        )}
-      </div>
-    </section>
+        {text ? <div>Bible Passage(s): {text}</div> : ''}
+      </Grid>
+    </OuterGrid>
   );
 }

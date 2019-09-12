@@ -1,30 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {fetchDrupalData} from '../../utils/fetch-functions';
+import ContentWrapper from '../content-wrapper';
 import SermonTable from './sermon-table';
 import TitleBreadcrumb from './title-breadcrumb';
 
-const Form = styled.form`
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  //border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-`;
-
-const Select = styled.select`
-  border: 1px solid #cdcdcd;
-  border-radius: 0;
-  box-shadow: none;
-  transition: border-color ease-in-out 0.3s;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 150px;
+  grid-template-rows: 50px;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 20px;
+  input,
+  select,
+  button {
+    border: 1px solid #cdcdcd;
+    border-radius: 0;
+    box-shadow: none;
+    transition: border-color ease-in-out 0.3s;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+  }
+  button {
+    font-weight: 400;
+    :active,
+    :hover,
+    :focus {
+      border-color: #c2b49a;
+      background-color: #c2b49a;
+      color: #fff;
+    }
+  }
 `;
 
 export default function Sermons({globalSermons, setGlobalSermons}) {
@@ -87,13 +100,11 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
         breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
       />
       {loaded ? (
-        <div id="content-region">
-          <div className="container">
-            <div className="col-md-3">
+        <ContentWrapper width="wide">
+          <Grid>
+            <div>
               View Sermon Series:
               <select
-                className="form-control"
-                id="sermonSelect"
                 value={seriesValue}
                 onChange={e => loadSeries(e.target.value)}
               >
@@ -109,57 +120,41 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
                   : ''}
               </select>
             </div>
-
-            <div className="form-group">
-              <Form>
-                <div className="col-md-4">
-                  Search:{' '}
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="searchQuery"
-                    value={searchQuery}
-                    onChange={e => setQuery(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-3">
-                  In:
-                  <Select
-                    className="form-control"
-                    id="searchType"
-                    value={searchType}
-                    onChange={e => setType(e.target.value)}
-                  >
-                    <option value="title">Title</option>
-                    <option value="preacher">Preacher</option>
-                    <option value="passage">Bible Passage</option>
-                  </Select>
-                </div>
-                <br />
-                <input
-                  type="button"
-                  value="Search"
-                  className="btn btn-primary sermon-search-button"
-                  onClick={() => searchSermons()}
-                />
-              </Form>
+            <div>
+              Search:{' '}
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={e => setQuery(e.target.value)}
+              />
             </div>
-
-            <div className="view-content">
-              {sermons ? <SermonTable sermons={sermons} /> : ''}
-              <br />
-              <span style={{float: 'left'}}>
-                {viewingRefinedList ? (
-                  <button onClick={() => loadSeries()}>
-                    Return to All Sermons
-                  </button>
-                ) : (
-                  ''
-                )}
-              </span>
+            <div>
+              In:
+              <select
+                value={searchType}
+                onChange={e => setType(e.target.value)}
+              >
+                <option value="title">Title</option>
+                <option value="preacher">Preacher</option>
+                <option value="passage">Bible Passage</option>
+              </select>
             </div>
-          </div>
-        </div>
+            <button type="button" onClick={() => searchSermons()}>
+              Search
+            </button>
+          </Grid>
+          {sermons ? <SermonTable sermons={sermons} /> : ''}
+          <br />
+          <span style={{float: 'left'}}>
+            {viewingRefinedList ? (
+              <button onClick={() => loadSeries()}>
+                Return to All Sermons
+              </button>
+            ) : (
+              ''
+            )}
+          </span>
+        </ContentWrapper>
       ) : (
         ''
       )}

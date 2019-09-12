@@ -24,7 +24,7 @@ export default function SermonSeriesPage({
 
   if (!loaded) {
     return (
-      <ContentWrapper>
+      <ContentWrapper width="wide">
         <p>Fetching content... please wait</p>
       </ContentWrapper>
     );
@@ -32,7 +32,7 @@ export default function SermonSeriesPage({
 
   if (sermons.length === 0 && loaded) {
     return (
-      <ContentWrapper>
+      <ContentWrapper width="wide">
         <p>Sorry, this sermon series could not be found.</p>
         <p>
           You can find all of our available sermons on{' '}
@@ -48,7 +48,7 @@ export default function SermonSeriesPage({
         title={sermons[0].sermonseries ? sermons[0].sermonseries : ''}
         breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
       />
-      <ContentWrapper>
+      <ContentWrapper width="wide">
         <img
           src={
             sermons[0].series_full_img
