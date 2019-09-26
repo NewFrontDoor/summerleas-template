@@ -57,7 +57,17 @@ export default function SermonSeriesPage({
           }
         />
         <h2>Sermons</h2>
-        <SermonTable sermons={sermons} />
+        <SermonTable
+          sermons={sermons}
+          columnHide={2}
+          headers={
+            ({name: 'Title'},
+            {name: 'Bible Passage(s)'},
+            {name: 'Preacher'},
+            {name: 'Date Preached'},
+            {item: 'blank'})
+          }
+        />
       </ContentWrapper>
     </>
   );

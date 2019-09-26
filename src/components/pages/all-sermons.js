@@ -99,7 +99,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
         title="All Sermons"
         breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
       />
-      {loaded ? (
+      {loaded && (
         <ContentWrapper width="wide">
           <Grid>
             <div>
@@ -109,15 +109,14 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
                 onChange={e => loadSeries(e.target.value)}
               >
                 <option value="">---</option>
-                {sermonSeriesSet
-                  ? sermonSeriesSet.map(series => {
-                      return (
-                        <option key={series.nid} value={series.nid}>
-                          {series.node_title}
-                        </option>
-                      );
-                    })
-                  : ''}
+                {sermonSeriesSet &&
+                  sermonSeriesSet.map(series => {
+                    return (
+                      <option key={series.nid} value={series.nid}>
+                        {series.node_title}
+                      </option>
+                    );
+                  })}
               </select>
             </div>
             <div>
@@ -143,20 +142,22 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
               Search
             </button>
           </Grid>
-          {sermons ? <SermonTable sermons={sermons} /> : ''}
+          {sermons && (
+            <SermonTable
+              sermons={sermons}
+              columnHide={[2]}
+              headers={['title', 'text', 'preacher', 'datepreached']}
+            />
+          )}
           <br />
           <span style={{float: 'left'}}>
-            {viewingRefinedList ? (
+            {viewingRefinedList && (
               <button onClick={() => loadSeries()}>
                 Return to All Sermons
               </button>
-            ) : (
-              ''
             )}
           </span>
         </ContentWrapper>
-      ) : (
-        ''
       )}
     </section>
   );
