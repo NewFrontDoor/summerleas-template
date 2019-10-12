@@ -1,7 +1,7 @@
 import React from 'react';
 import slider1 from '../../assets/img/slider1.png';
 import slider2 from '../../assets/img/slider2.png';
-import Carousel from '../carousel/carousel';
+import Carousel from '@newfrontdoor/carousel';
 import Welcome from './welcome';
 import HomePageContent from './home-page-content';
 

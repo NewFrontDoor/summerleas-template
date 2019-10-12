@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Map from '../models/google-map';
+import {MapLayoutSimple} from '@newfrontdoor/location-map';
 
 export default function WhereToFindUs({
   churchDetails: {churchName, streetAddress, city, state}
@@ -9,10 +9,13 @@ export default function WhereToFindUs({
     <section>
       <h2>Where to Find Us</h2>
 
-      <Map
-        location={{lat: -31.9716063, lng: 115.8918229}}
-        height="360px"
-        mapWidth="100%"
+      <MapLayoutSimple 
+        location={{
+          location: {lat: -42.998185, lng: 147.29004},
+          latcentrepoint: -42.998185,
+          lngcentrepoint: 147.29004
+        }}
+        mapsKey="AIzaSyBTThwaQ-dHQVR-gjylEOexM1TdWKl7RRQ"
       />
       <a href="https://goo.gl/maps/yF5VjdUgXPq">{churchName}</a>
       <p>{streetAddress}</p>

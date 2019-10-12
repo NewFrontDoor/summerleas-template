@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {fetchDrupalData} from '../../utils/fetch-functions';
-import LatestSermon from './latest-sermon';
+import {LatestSermonContainerDrupal as LatestSermon} from '@newfrontdoor/sermon';
 import WhereToFindUs from './where-to-find-us';
 import UpcomingEvents from './upcoming-events';
 
