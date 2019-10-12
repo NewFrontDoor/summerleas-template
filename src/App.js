@@ -1,49 +1,82 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, {useState} from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Global, css} from '@emotion/core';
+import Navigation from './components/navigation';
+import HomePageWrapper from './components/homepage/home-page-wrapper';
+import OtherPageWrapper from './components/other-page-wrapper';
+import Footer from './components/footer';
 
-import Navigation from './components/Navigation';
-import HomePageWrapper from './components/homepage/HomePageWrapper';
-import OtherPageWrapper from './components/OtherPageWrapper';
-import Footer from './components/Footer';
+require('typeface-lato');
+require('typeface-roboto-slab');
 
-import './assets/css/mediaelement/mediaelementplayer.min.css';
-
-import './assets/css/simplenews/simplenews.css';
-import './assets/css/alignmentstyles.css';
-
-
-import './assets/css/font-awesome/font-awesome.min.css';
-
-import './assets/css/tb_megamenu/bootstrap.css';
-import './assets/css/tb_megamenu/base.css';
-import './assets/css/tb_megamenu/default.css';
-import './assets/css/tb_megamenu/compatibility.css';
-
-import './assets/nestor/css/bootstrap.min.css';
-import './assets/nestor/css/ionicons.min.css';
-import './assets/nestor/css/flexslider.css';
-import './assets/nestor/css/style.css';
-
-import './assets/css/fontyourface/font.css';
-
-import './assets/nestor/css/color/brown.css';
-
-import './assets/css/custom.css';
-import './assets/css/events.css';
-
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Route path="*" component={Navigation} />
-          <Route exact path="/" component={HomePageWrapper} />
-          <Route path="/:path" component={OtherPageWrapper} />
-          <Route path="*" component={Footer} />
-        </div>
-      </Router>
-    );
+const globalStyles = css`
+  body {
+    color: #777;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+    word-wrap: break-word;
+    font-style: normal;
   }
-}
 
-export default App;
+  a {
+    text-decoration: none;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    color: #c2b49a;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    color: #2b2b2b;
+    text-decoration: none;
+  }
+
+  b,
+  strong {
+    font-weight: 700;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 300;
+  }
+`;
+
+export default function App() {
+  const [globalSermons, setGlobalSermons] = useState(null);
+  return (
+    <Router>
+      <Global styles={globalStyles} />
+      <Route path="*" component={Navigation} />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <HomePageWrapper
+            globalSermons={globalSermons}
+            setGlobalSermons={setGlobalSermons}
+          />
+        )}
+      />
+      <Route
+        path="/:path"
+        render={() => (
+          <OtherPageWrapper
+            globalSermons={globalSermons}
+            setGlobalSermons={setGlobalSermons}
+          />
+        )}
+      />
+      <Route path="*" component={Footer} />
+    </Router>
+  );
+}

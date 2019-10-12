@@ -1,0 +1,113 @@
+{
+  "items": [
+    {
+      "title": "About Us",
+      "submenu": {
+        "blurb": "Find out more about our church...",
+        "menus": [
+          {
+            "header": "Community Life",
+            "items": [
+              {
+                "name": "Gospel Communities",
+                "url": "gcs"
+              },
+              {
+                "name": "Youth",
+                "url": "youth"
+              }
+            ]
+          },
+          {
+            "header": "About",
+            "items": [
+              {
+                "name": "Vision",
+                "url": "vision"
+              },
+              {
+                "name": "What We Believe",
+                "url": "whatwebelieve"
+              },
+              {
+                "name": "Children...",
+                "url": "children"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sunday-services",
+      "name": "Visit Us"
+    },
+    {
+      "title": "Sermons",
+      "submenu": {
+        "blurb": "Listen to our latest sermons or find a specifc talk...",
+        "menus": [
+          {
+            "header": "Sermons",
+            "items": [
+              {
+                "name": "Sermons Page",
+                "url": "Sermons"
+              },
+              {
+                "name": "Search our talks",
+                "url": "AllSermons"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Resources",
+      "submenu": {
+        "blurb": "Please use any of our resources that you find useful...",
+        "menus": [
+          {
+            "header": "Discipleship",
+            "items": [
+              {
+                "name": "Gospel Centred Life",
+                "url": "gospel-centred-life"
+              },
+              {
+                "name": "GC Foundations",
+                "url": "gc-foundations"
+              },
+              {
+                "name": "Gospel Fluency",
+                "url": "gospel-fluency"
+              },
+              {
+                "name": "I Believe",
+                "url": "i-believe"
+              }
+            ]
+          },
+          {
+            "header": "About",
+            "items": [
+              {
+                "name": "CRCST Privacy Policy",
+                "url": "crcst-privacy-policy"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "OurPeople",
+      "name": "Our People"
+    },
+    {
+      "slug": "ContactUs",
+      "name": "Contact Us"
+    }
+  ]
+}
