@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
+import {SermonTable} from '@newfrontdoor/sermon'
 import {fetchDrupalData} from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
-import SermonTable from './sermon-table';
 import TitleBreadcrumb from './title-breadcrumb';
 
 const Grid = styled.div`
@@ -146,7 +147,12 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
             <SermonTable
               sermons={sermons}
               columnHide={[2]}
-              headers={['title', 'text', 'preacher', 'datepreached']}
+              headers={[
+                {heading: 'Title', key: 'title'},
+                {heading: 'Bible Passage(s)', key: 'text'},
+                {heading: 'Preacher', key: 'preacher'},
+                {heading: 'Date Preached', key: 'datepreached'}
+              ]}
             />
           )}
           <br />
@@ -162,3 +168,8 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
     </section>
   );
 }
+
+Sermons.propTypes = {
+  globalSermons: PropTypes.array,
+  setGlobalSermons: PropTypes.func.isRequired
+};

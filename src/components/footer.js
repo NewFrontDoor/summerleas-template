@@ -1,7 +1,12 @@
 /** @jsx jsx */
 import styled from '@emotion/styled';
 import {jsx, css} from '@emotion/core';
-import {IoIosPin, IoIosMail, IoLogoFacebook, IoLogoTwitter} from 'react-icons/io';
+import {
+  IoIosPin,
+  IoIosMail,
+  IoLogoFacebook,
+  IoLogoTwitter
+} from 'react-icons/io';
 
 const Grid = styled('div')`
   display: grid;
@@ -64,7 +69,7 @@ export default function Footer() {
           </p>
         </div>
         <div css={centered}>
-        <IoLogoFacebook
+          <IoLogoFacebook
             style={{
               stroke: 'white',
               strokeWidth: '20px',

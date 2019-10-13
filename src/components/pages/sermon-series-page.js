@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {SermonTable} from '@newfrontdoor/sermon'
 import {fetchDrupalData} from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
-import SermonTable from './sermon-table';
 
 export default function SermonSeriesPage({
   match: {

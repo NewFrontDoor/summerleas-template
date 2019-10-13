@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {ThemeProvider} from 'emotion-theming';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import {Link} from 'react-router-dom';
 import SubmenuBlock from './submenu-block';
@@ -49,14 +50,16 @@ export default function Menu({items, isVisible}) {
 
           if (submenu) {
             return (
-              <li>
+              <li
+                onMouseOver={() =>
+                  updateOpenMenu(openMenu === title ? null : title)}
+                onMouseOut={() => updateOpenMenu(null)}
+              >
                 <a
                   title={title}
                   style={{
                     cursor: 'pointer'
                   }}
-                  onClick={() =>
-                    updateOpenMenu(openMenu === title ? null : title)}
                 >
                   {title}
                   <Caret />
@@ -76,3 +79,8 @@ export default function Menu({items, isVisible}) {
     </ThemeProvider>
   );
 }
+
+Menu.propTypes = {
+  isVisible: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired
+};

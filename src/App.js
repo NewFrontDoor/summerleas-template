@@ -17,6 +17,7 @@ const globalStyles = css`
     text-rendering: optimizeLegibility;
     word-wrap: break-word;
     font-style: normal;
+    margin: 0;
   }
 
   a {

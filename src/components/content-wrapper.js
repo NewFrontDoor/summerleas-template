@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.section`
   padding: 40px 15px;
@@ -23,5 +24,15 @@ const Wrapper = styled.section`
 `;
 
 export default function ContentWrapper({children, width, styles}) {
-  return <Wrapper width={width} styles={styles}>{children}</Wrapper>;
+  return (
+    <Wrapper width={width} styles={styles}>
+      {children}
+    </Wrapper>
+  );
 }
+
+ContentWrapper.propTypes = {
+  children: PropTypes.element.isRequired,
+  styles: PropTypes.string,
+  width: PropTypes.string.isRequired
+};

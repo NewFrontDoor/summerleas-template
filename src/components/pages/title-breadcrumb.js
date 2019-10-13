@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import ContentWrapper from '../content-wrapper';
 
 const Wrapper = styled.div`
@@ -54,4 +55,9 @@ export default function TitleBreadcrumb({title, breadcrumbs}) {
       </ContentWrapper>
     </Wrapper>
   );
+}
+
+TitleBreadcrumb.propTypes = {
+  breadcrumbs: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 }

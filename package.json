@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "@newfrontdoor/carousel": "^1.0.0",
+    "@newfrontdoor/sermon": "^0.2.7",
     "@react-google-maps/api": "^1.6.0",
     "embla-carousel-react": "^1.0.3",
     "emotion-theming": "^10.0.17",

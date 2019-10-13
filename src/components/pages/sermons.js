@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import {fetchDrupalData} from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import {CurrentSeries, LatestSermon, RecentSeries} from './sermon-components';
@@ -85,3 +86,8 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
     </section>
   );
 }
+
+Sermons.propTypes = {
+  globalSermons: PropTypes.array,
+  setGlobalSermons: PropTypes.func.isRequired
+};

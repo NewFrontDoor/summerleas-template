@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import OtherPageContent from './other-page-content';
 
 import AllSermons from './pages/all-sermons';
@@ -50,3 +50,8 @@ export default function OtherPageWrapper({globalSermons, setGlobalSermons}) {
     </section>
   );
 }
+
+OtherPageWrapper.propTypes = {
+  globalSermons: PropTypes.array,
+  setGlobalSermons: PropTypes.func.isRequired
+};
