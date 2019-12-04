@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../assets/img/logo.png';
 import Menu from './menu';
 
@@ -8,7 +8,7 @@ const menudata = require('../sample-data/menu-items.json');
 
 const Header = styled('header')`
   display: flex;
-  width: 100vw;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
@@ -37,6 +37,9 @@ const Logo = styled(Link)`
   flex: 0 1 auto;
 `;
 
+const LogoImg = styled('img')`
+max-height: 150px;`
+
 const MenuWrapper = styled(Menu)`
   flex: 0 1 auto;
 `;
@@ -46,7 +49,7 @@ export default function Navigation() {
   return (
     <Header>
       <Logo to="/">
-        <img src={logo} alt="Home" />
+        <LogoImg src={logo} alt="Home" />
       </Logo>
       <MenuButton type="button" onClick={() => toggleMenuVisible(!menuVisible)}>
         MENU

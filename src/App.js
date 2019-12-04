@@ -1,15 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Global, css} from '@emotion/core';
 import Navigation from './components/navigation';
 import HomePageWrapper from './components/homepage/home-page-wrapper';
 import OtherPageWrapper from './components/other-page-wrapper';
 import Footer from './components/footer';
+import {fetchDrupalData} from './utils/fetch-functions'
 
 require('typeface-lato');
 require('typeface-roboto-slab');
 
 const globalStyles = css`
+html,
+  body {
+    margin: 0;
+    outline: 0;
+    padding: 0;
+  }
   body {
     color: #777;
     font-family: 'Lato', sans-serif;
@@ -53,6 +60,21 @@ const globalStyles = css`
 
 export default function App() {
   const [globalSermons, setGlobalSermons] = useState(null);
+  const [pagesData, setpagesData] = useState(null);
+  const [pagesFetched, setPagesFetched] = useState(false);
+
+  useEffect(() => {
+    if (pagesFetched === false) {
+      fetchDrupalData('page', {}).then(response => {
+        let mapped = response.map(item => ({
+          [item.page_title.toLowerCase()]: item
+        }));
+        let mappedObj = Object.assign({}, ...mapped);
+        setpagesData(mappedObj);
+        setPagesFetched(true);
+      });
+    }
+  }, [pagesFetched, pagesData]);
   return (
     <Router>
       <Global styles={globalStyles} />
@@ -73,6 +95,7 @@ export default function App() {
           <OtherPageWrapper
             globalSermons={globalSermons}
             setGlobalSermons={setGlobalSermons}
+            pagesData={pagesData}
           />
         )}
       />

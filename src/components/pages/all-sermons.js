@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import {fetchDrupalData} from '../../utils/fetch-functions';
+import { fetchDrupalData } from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import SermonTable from './sermon-table';
 import TitleBreadcrumb from './title-breadcrumb';
@@ -40,7 +40,13 @@ const Grid = styled.div`
   }
 `;
 
-export default function Sermons({globalSermons, setGlobalSermons}) {
+const SearchInput = styled('input')`
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+`;
+
+export default function Sermons({ globalSermons, setGlobalSermons }) {
   const [sermons, setSermons] = useState(globalSermons);
   const [sermonSeriesSet, setSeries] = useState(null);
   const [seriesValue, setSeriesValue] = useState('');
@@ -76,7 +82,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
       });
     } else {
       setSeriesValue(nid);
-      fetchDrupalData('seriesFilter', {nid}).then(response => {
+      fetchDrupalData('seriesFilter', { nid }).then(response => {
         setSermons(response);
         setList(true);
       });
@@ -86,7 +92,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
   function searchSermons() {
     console.log(searchQuery + '-' + searchType);
     if (searchQuery && searchType) {
-      fetchDrupalData('sermons', {[searchType]: searchQuery}).then(response => {
+      fetchDrupalData('sermons', { [searchType]: searchQuery }).then(response => {
         setSermons(response);
         setList(true);
       });
@@ -97,13 +103,13 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
     <section>
       <TitleBreadcrumb
         title="All Sermons"
-        breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
+        breadcrumbs={[['Home', '/'], ['Sermons', '']]}
       />
       {loaded && (
         <ContentWrapper width="wide">
           <Grid>
             <div>
-              View Sermon Series:
+              View Series:
               <select
                 value={seriesValue}
                 onChange={e => loadSeries(e.target.value)}
@@ -121,7 +127,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
             </div>
             <div>
               Search:{' '}
-              <input
+              <SearchInput
                 type="text"
                 value={searchQuery}
                 onChange={e => setQuery(e.target.value)}
@@ -134,7 +140,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
                 onChange={e => setType(e.target.value)}
               >
                 <option value="title">Title</option>
-                <option value="preacher">Preacher</option>
+                <option value="preacher">Speaker</option>
                 <option value="passage">Bible Passage</option>
               </select>
             </div>
@@ -150,7 +156,7 @@ export default function Sermons({globalSermons, setGlobalSermons}) {
             />
           )}
           <br />
-          <span style={{float: 'left'}}>
+          <span style={{ float: 'left' }}>
             {viewingRefinedList && (
               <button onClick={() => loadSeries()}>
                 Return to All Sermons

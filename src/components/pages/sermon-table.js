@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import {Link} from 'react-router-dom';
-import {FaDownload} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaDownload } from 'react-icons/fa';
 
 const Table = styled.table`
   border-collapse: collapse;
@@ -12,9 +12,9 @@ const Table = styled.table`
   }
   @media (max-width: 505px) {
     ${props =>
-      props.columnHide.map(
-        column => `th:nth-child(${column}) { display: none;}`
-      )}
+    props.columnHide.map(
+      column => `th:nth-child(${column}) { display: none;}`
+    )}
   }
 `;
 
@@ -26,13 +26,13 @@ const Tr = styled.tr`
   }
   @media (max-width: 505px) {
     ${props =>
-      props.columnHide.map(
-        column => `td:nth-child(${column}) { display: none;}`
-      )}
+    props.columnHide.map(
+      column => `td:nth-child(${column}) { display: none;}`
+    )}
   }
 `;
 
-export default function SermonTable({sermons, headers, columnHide}) {
+export default function SermonTable({ sermons, headers, columnHide }) {
   return (
     <Table columnHide={columnHide}>
       <thead>
@@ -40,8 +40,8 @@ export default function SermonTable({sermons, headers, columnHide}) {
           {headers.includes('title') && <th>Title</th>}
           {headers.includes('series') && <th>Series</th>}
           {headers.includes('text') && <th>Bible Passage(s)</th>}
-          {headers.includes('preacher') && <th>Preacher</th>}
-          {headers.includes('datepreached') && <th>Date Preached</th>}
+          {headers.includes('preacher') && <th>Speaker</th>}
+          {headers.includes('datepreached') && <th>Date</th>}
           <tr />
         </tr>
       </thead>
@@ -63,7 +63,7 @@ export default function SermonTable({sermons, headers, columnHide}) {
               <td>{sermon.text ? sermon.text : ''}</td>
             )}
             {headers.includes('preacher') && (
-              <td>{sermon.preacher ? sermon.preacher : ''}</td>
+              <td dangerouslySetInnerHTML={{ __html: sermon.preacher }}></td>
             )}
             {headers.includes('datepreached') && (
               <td>{sermon.datepreached ? sermon.datepreached : ''}</td>

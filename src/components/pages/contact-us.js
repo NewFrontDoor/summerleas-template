@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import styled from '@emotion/styled';
 import ContactForm from '../models/contact-form';
 import ContentWrapper from '../content-wrapper';
@@ -10,10 +10,13 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-top: 20px;
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr
+  }
 `;
 
 function reducer(state, action) {
-  return {...state, [action.name]: action.value};
+  return { ...state, [action.name]: action.value };
 }
 
 const initialState = {
@@ -44,8 +47,7 @@ export default function ContactUs() {
 
         <Grid>
           <div>
-            <h5>Address</h5>
-            <p>Come visit us on Sundays @ Xam:</p>
+            <h3>Address</h3>
             <p>
               Church Name
               <br />
@@ -55,7 +57,7 @@ export default function ContactUs() {
             </p>
           </div>
           <div>
-            <h5>Contact Us</h5>
+            <h3>Contact Us</h3>
             <p>
               <b>Facebook:</b> &nbsp;<a href="#">/_</a>
               <br />

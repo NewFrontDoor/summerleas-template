@@ -2,26 +2,39 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {Link} from 'react-router-dom';
 
-const Wrapper = styled('div')`
+const Outer = styled('div')`
   position: absolute;
   left: 0;
-  min-width: 200px;
-  width: 750px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  @media (min-width: 580px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`;
+
+const Wrapper = styled('div')`
+  @media (max-width: 580px) {
+    max-width: 90%;
+    grid-template-columns: 1fr;
+    margin-left: 10px;
+  }
+  grid-column-start: 2;
   list-style: none;
-  display: ${props => props.display};
-  grid-template-columns: ${props => `repeat(${props.columns}, 1fr)`};
+  display: grid;
+  grid-template-columns: ${props => `200px repeat(${props.columns}, 200px)`};
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom: 3px solid ${props => props.theme.colors.highlight};
   border-top: none;
   background-color: #fff;
   padding: 10px;
+  margin-right: 10px;
   gap: 40px;
   z-index: 1000;
 `;
 
 const Blurb = styled('div')`
   background-color: ${props => props.theme.colors.highlight};
-  width: 100%;
   color: white;
   padding: 10px 20px;
   margin-top: 5px;
@@ -63,25 +76,40 @@ const Anchor = styled(Link)`
   padding: 5px 0;
 `;
 
-export default function SubmenuBlock({submenu: {blurb, menus}, visible}) {
+const ExternalLink = styled('a')`
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 0;
+`;
+
+export default function SubmenuBlock({submenu: {blurb, menus}}) {
   return (
-    <Wrapper
-      columns={menus.length >= 2 ? menus.length + 1 : 3}
-      display={visible ? 'grid' : 'none'}
-    >
-      <Blurb>{blurb}</Blurb>
-      {menus.map(list => (
-        <SubmenuList>
-          <ul>
-            <Header>{list.header}</Header>
-            {list.items.map(item => (
-              <li>
-                <Anchor to={item.url}>{item.name}</Anchor>
-              </li>
-            ))}
-          </ul>
-        </SubmenuList>
-      ))}
-    </Wrapper>
+    <Outer>
+      <Wrapper columns={menus.length >= 2 ? menus.length : 2}>
+        <Blurb>{blurb}</Blurb>
+        {menus.map(list => (
+          <SubmenuList>
+            <ul>
+              <Header>{list.header}</Header>
+              {list.items.map(item => (
+                <li>
+                  {item.externalLink === true ? (
+                    <ExternalLink
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      {item.name}
+                    </ExternalLink>
+                  ) : (
+                    <Anchor to={`/${item.url}`}>{item.name}</Anchor>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </SubmenuList>
+        ))}
+      </Wrapper>
+    </Outer>
   );
 }

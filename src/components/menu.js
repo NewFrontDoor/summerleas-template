@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ThemeProvider} from 'emotion-theming';
 import styled from '@emotion/styled';
 import {Link} from 'react-router-dom';
@@ -21,6 +21,8 @@ const List = styled('ul')`
       color: #777;
     }
   }
+  text-align: center;
+  padding-left: 0;
   @media (min-width: 770px) {
     display: flex;
   }
@@ -39,8 +41,25 @@ const Caret = styled('span')`
   cursor: pointer;
 `;
 
+const Dropdown = styled('li')`
+  cursor: pointer;
+  div {
+    display: none;
+  }
+  a:hover,
+  a:focus-within {
+    color: green;
+  }
+  &:hover div,
+  &:focus-within div {
+    display: block;
+    @media (min-width: 770px) {
+      display: grid;
+    }
+  }
+`;
+
 export default function Menu({items, isVisible}) {
-  const [openMenu, updateOpenMenu] = useState(null);
   return (
     <ThemeProvider theme={theme}>
       <List isVisible={isVisible ? 'block' : 'none'}>
@@ -49,26 +68,19 @@ export default function Menu({items, isVisible}) {
 
           if (submenu) {
             return (
-              <li>
-                <a
-                  title={title}
-                  style={{
-                    cursor: 'pointer'
-                  }}
-                  onClick={() =>
-                    updateOpenMenu(openMenu === title ? null : title)}
-                >
+              <Dropdown>
+                <a href="#">
                   {title}
                   <Caret />
                 </a>
-                <SubmenuBlock submenu={submenu} visible={openMenu === title} />
-              </li>
+                <SubmenuBlock submenu={submenu} />
+              </Dropdown>
             );
           }
 
           return (
-            <li>
-              <Link to={slug}>{name}</Link>
+            <li key={slug}>
+              <Link to={`/${slug}`}>{name}</Link>
             </li>
           );
         })}
