@@ -1,12 +1,25 @@
 import React from 'react';
 import {Form, Field} from 'react-final-form';
 import styled from '@emotion/styled';
+import { postToWebform } from '../../utils/post-to-api';
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
 const onSubmit = async values => {
+  var form = new FormData();
+  form.append("webform", "drupal-webform-uuid");
+  form.append("submission[data][1][values][0]", values["firstName"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  form.append("submission[data][2][values][0]", values["email"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  if (values["subject"]) {
+    form.append("submission[data][3][values][0]", values["subject"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
+  }
+  form.append("submission[data][4][values][0]", values["message"].replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, ''));
   await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
+
+  /*postToWebform(form, function (data) {
+    console.log("submitted")
+  });*/
+
+  window.alert("Thanks for getting in touch. We will get back to you as soon as we can.");
 };
 
 const required = value => (value ? undefined : 'Required');
@@ -50,12 +63,12 @@ export default function ContactForm() {
         }}
       >
         <Form
-          render={({handleSubmit, submitting, pristine}) => (
+          render={({ handleSubmit, submitting, pristine, submitSucceeded }) => (
             <form onSubmit={handleSubmit}>
               <div>
                 <FormGroup>
                   <Field name="firstName" validate={required}>
-                    {({input, meta}) => (
+                    {({ input, meta }) => (
                       <div>
                         <label>
                           Your name <Req title="This field is required.">*</Req>
@@ -75,7 +88,7 @@ export default function ContactForm() {
                 </FormGroup>
                 <FormGroup>
                   <Field name="email" validate={required}>
-                    {({input, meta}) => (
+                    {({ input, meta }) => (
                       <div>
                         <label>
                           Your email address{' '}
@@ -95,7 +108,7 @@ export default function ContactForm() {
                 </FormGroup>
                 <FormGroup>
                   <Field name="subject">
-                    {({input, meta}) => (
+                    {({ input, meta }) => (
                       <div>
                         <label>Subject</label>
                         <Input {...input} type="text" placeholder="Subject" />
@@ -108,7 +121,7 @@ export default function ContactForm() {
                 </FormGroup>
                 <FormGroup>
                   <Field name="message" validate={required}>
-                    {({input, meta}) => (
+                    {({ input, meta }) => (
                       <div>
                         <label>
                           Message <Req title="This field is required.">*</Req>
@@ -134,7 +147,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     name="submit"
-                    disabled={submitting || pristine}
+                    disabled={submitting || pristine || submitSucceeded}
                   >
                     Send message
                   </button>

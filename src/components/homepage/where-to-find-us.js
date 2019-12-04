@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Map from '../models/google-map';
 
 export default function WhereToFindUs({
-  churchDetails: {churchName, streetAddress, city, state}
+  churchDetails: { churchName, streetAddress, city, state }
 }) {
   return (
     <section>
       <h2>Where to Find Us</h2>
 
       <Map
-        location={{lat: -31.9716063, lng: 115.8918229}}
+        location={{ lat: -31.9716063, lng: 115.8918229 }}
         height="360px"
         mapWidth="100%"
       />

@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import {fetchDrupalData} from '../../utils/fetch-functions';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { fetchDrupalData } from '../../utils/fetch-functions';
 import ContentWrapper from '../content-wrapper';
 import TitleBreadcrumb from './title-breadcrumb';
 import SermonTable from './sermon-table';
 
 export default function SermonSeriesPage({
   match: {
-    params: {nid}
+    params: { nid }
   }
 }) {
   const [sermons, setSermons] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetchDrupalData('sermons', {filters: [{sermonSeries: nid}]}).then(
+    fetchDrupalData('sermons', { filters: [{ sermonSeries: nid }] }).then(
       response => {
         setSermons(response);
         setLoaded(true);
@@ -46,7 +46,7 @@ export default function SermonSeriesPage({
     <>
       <TitleBreadcrumb
         title={sermons[0].sermonseries ? sermons[0].sermonseries : ''}
-        breadcrumbs={[['Home', '/'], ['Resources', '/resources']]}
+        breadcrumbs={[['Home', '/'], ['Sermons', '']]}
       />
       <ContentWrapper width="wide">
         <img
@@ -59,14 +59,8 @@ export default function SermonSeriesPage({
         <h2>Sermons</h2>
         <SermonTable
           sermons={sermons}
-          columnHide={2}
-          headers={
-            ({name: 'Title'},
-            {name: 'Bible Passage(s)'},
-            {name: 'Preacher'},
-            {name: 'Date Preached'},
-            {item: 'blank'})
-          }
+          columnHide={[2]}
+          headers={['title', 'text', 'preacher', 'datepreached']}
         />
       </ContentWrapper>
     </>
